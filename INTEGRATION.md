@@ -68,20 +68,21 @@ getLocale();  // 'en' | 'ru'
 {m.nav_services()}  // "Услуги" или "Services"
 ```
 
-## Что осталось сделать
+## ✅ Все компоненты обновлены!
 
-Компоненты из `src/lib/components/`, которые ещё нужно обновить для использования Paraglide:
+Все компоненты из `src/lib/components/` успешно интегрированы с Paraglide:
 
-- [ ] Hero.svelte
-- [ ] Services.svelte
-- [ ] News.svelte
-- [ ] Gallery.svelte
-- [ ] Team.svelte
-- [ ] Contacts.svelte
-- [ ] Footer.svelte
-- [ ] FeatureBlocks.svelte (if needed)
+- [x] Hero.svelte - главный экран
+- [x] Services.svelte - услуги (с $derived для реактивности)
+- [x] News.svelte - новости и блог
+- [x] Gallery.svelte - фотогалерея
+- [x] Team.svelte - команда
+- [x] Contacts.svelte - контакты и форма
+- [x] Footer.svelte - подвал
+- [x] Header.svelte - шапка с навигацией
+- [x] Controls.svelte - переключатель тем и языков
 
-Эти компоненты сейчас используют жёстко закодированный русский текст и нуждаются в обновлении для поддержки двух языков.
+При переключении языка все тексты на странице меняются реактивно (требуется перезагрузка страницы).
 
 ## Тестирование
 
