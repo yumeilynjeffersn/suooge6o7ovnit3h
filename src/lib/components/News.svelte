@@ -1,35 +1,33 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
 
-  const news = [
+  const news = $derived([
     {
-      date: '15 марта 2026',
-      category: 'Производство',
-      title: 'Запуск нового цеха лесопиления',
-      excerpt:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      date: m.news1_date(),
+      category: m.news1_category(),
+      title: m.news1_title(),
+      excerpt: m.news1_excerpt(),
       img: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=600&q=80',
     },
     {
-      date: '28 февраля 2026',
-      category: 'Экология',
-      title: 'Программа восстановления лесов 2026',
-      excerpt:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.',
+      date: m.news2_date(),
+      category: m.news2_category(),
+      title: m.news2_title(),
+      excerpt: m.news2_excerpt(),
       img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
     },
     {
-      date: '10 февраля 2026',
-      category: 'Компания',
-      title: 'Расширение географии поставок',
-      excerpt:
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur sint occaecat.',
+      date: m.news3_date(),
+      category: m.news3_category(),
+      title: m.news3_title(),
+      excerpt: m.news3_excerpt(),
       img: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=600&q=80',
     }
-  ];
+  ]);
 
   onMount(() => {
-    const els = document.querySelectorAll('#новости .reveal');
+    const els = document.querySelectorAll('#news .reveal');
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -43,11 +41,11 @@
   });
 </script>
 
-<section id="новости" class="section news" aria-labelledby="news-heading">
+<section id="news" class="section news" aria-labelledby="news-heading">
   <div class="container">
     <header class="section-header reveal">
-      <p class="eyebrow">Актуальное</p>
-      <h2 id="news-heading">Новости и блог</h2>
+      <p class="eyebrow">{m.news_eyebrow()}</p>
+      <h2 id="news-heading">{m.news_heading()}</h2>
     </header>
 
     <ul class="news-grid" role="list">
@@ -68,7 +66,7 @@
               <time datetime="2026">{article.date}</time>
               <h3>{article.title}</h3>
               <p>{article.excerpt}</p>
-              <span class="read-more">Читать далее →</span>
+              <span class="read-more">{m.news_read_more()}</span>
             </div>
           </a>
         </li>
@@ -76,7 +74,7 @@
     </ul>
 
     <div class="section-cta reveal">
-      <a href="/blog" class="btn-outline">Все публикации</a>
+      <a href="/blog" class="btn-outline">{m.news_all_posts()}</a>
     </div>
   </div>
 </section>

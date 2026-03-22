@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
 
   onMount(() => {
-    const els = document.querySelectorAll('#контакты .reveal');
+    const els = document.querySelectorAll('#contacts .reveal');
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -16,39 +17,39 @@
   });
 </script>
 
-<section id="контакты" class="section contacts" aria-labelledby="contacts-heading">
+<section id="contacts" class="section contacts" aria-labelledby="contacts-heading">
   <div class="container contacts-inner">
     <div class="contacts-info reveal">
-      <p class="eyebrow">Свяжитесь с нами</p>
-      <h2 id="contacts-heading">Контакты</h2>
+      <p class="eyebrow">{m.contacts_eyebrow()}</p>
+      <h2 id="contacts-heading">{m.contacts_heading()}</h2>
       <address>
         <ul class="contacts-list" role="list">
           <li>
             <span class="c-icon" aria-hidden="true">📍</span>
             <div>
-              <strong>Адрес</strong>
-              <span>г. Архангельск, ул. Лесная, 45, офис 12</span>
+              <strong>{m.contacts_address_label()}</strong>
+              <span>{m.contacts_address_value()}</span>
             </div>
           </li>
           <li>
             <span class="c-icon" aria-hidden="true">📞</span>
             <div>
-              <strong>Телефон</strong>
-              <a href="tel:+78182000000">+7 (8182) 00-00-00</a>
+              <strong>{m.contacts_phone_label()}</strong>
+              <a href="tel:+78182000000">{m.contacts_phone_value()}</a>
             </div>
           </li>
           <li>
             <span class="c-icon" aria-hidden="true">✉️</span>
             <div>
-              <strong>E-mail</strong>
-              <a href="mailto:info@sevles.ru">info@sevles.ru</a>
+              <strong>{m.contacts_email_label()}</strong>
+              <a href="mailto:info@northwood.ru">{m.contacts_email_value()}</a>
             </div>
           </li>
           <li>
             <span class="c-icon" aria-hidden="true">🕐</span>
             <div>
-              <strong>Режим работы</strong>
-              <span>Пн–Пт: 9:00 — 18:00</span>
+              <strong>{m.contacts_hours_label()}</strong>
+              <span>{m.contacts_hours_value()}</span>
             </div>
           </li>
         </ul>
@@ -56,43 +57,43 @@
     </div>
 
     <div class="contacts-form reveal" style="--delay:100ms">
-      <h3>Оставить заявку</h3>
-      <form novalidate aria-label="Форма обратной связи">
+      <h3>{m.contacts_form_heading()}</h3>
+      <form novalidate aria-label={m.contacts_form_aria()}>
         <div class="field">
-          <label for="name">Ваше имя</label>
+          <label for="name">{m.contacts_form_name_label()}</label>
           <input
             id="name"
             type="text"
             name="name"
-            placeholder="Иван Иванов"
+            placeholder={m.contacts_form_name_placeholder()}
             autocomplete="name"
             required
           />
         </div>
         <div class="field">
-          <label for="phone">Телефон</label>
+          <label for="phone">{m.contacts_form_phone_label()}</label>
           <input
             id="phone"
             type="tel"
             name="phone"
-            placeholder="+7 (___) ___-__-__"
+            placeholder={m.contacts_form_phone_placeholder()}
             autocomplete="tel"
             required
           />
         </div>
         <div class="field">
-          <label for="message">Сообщение</label>
+          <label for="message">{m.contacts_form_message_label()}</label>
           <textarea
             id="message"
             name="message"
             rows="4"
-            placeholder="Расскажите о вашем запросе..."
+            placeholder={m.contacts_form_message_placeholder()}
           ></textarea>
         </div>
-        <button type="submit" class="btn-primary full">Отправить заявку</button>
+        <button type="submit" class="btn-primary full">{m.contacts_form_submit()}</button>
         <p class="form-note">
-          Нажимая кнопку, вы соглашаетесь с
-          <a href="/privacy">политикой конфиденциальности</a>.
+          {m.contacts_form_privacy_note()}
+          <a href="/privacy">{m.contacts_form_privacy_link()}</a>.
         </p>
       </form>
     </div>

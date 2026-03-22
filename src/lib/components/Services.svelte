@@ -1,41 +1,18 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
 
-  const services = [
-    {
-      icon: '🌲',
-      title: 'Лесозаготовка',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    },
-    {
-      icon: '🪚',
-      title: 'Лесопиление',
-      desc: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute.',
-    },
-    {
-      icon: '🚛',
-      title: 'Транспортировка',
-      desc: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint.',
-    },
-    {
-      icon: '📋',
-      title: 'Проектирование',
-      desc: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed perspiciatis.',
-    },
-    {
-      icon: '🌿',
-      title: 'Озеленение',
-      desc: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.',
-    },
-    {
-      icon: '🔩',
-      title: 'Переработка',
-      desc: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.',
-    },
-  ];
+  const services = $derived([
+    { icon: '🌲', title: m.service1_title(), desc: m.service1_desc() },
+    { icon: '🪚', title: m.service2_title(), desc: m.service2_desc() },
+    { icon: '🚛', title: m.service3_title(), desc: m.service3_desc() },
+    { icon: '📋', title: m.service4_title(), desc: m.service4_desc() },
+    { icon: '🌿', title: m.service5_title(), desc: m.service5_desc() },
+    { icon: '🔩', title: m.service6_title(), desc: m.service6_desc() },
+  ]);
 
   onMount(() => {
-    const els = document.querySelectorAll('#услуги .reveal');
+    const els = document.querySelectorAll('#services .reveal');
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -49,14 +26,13 @@
   });
 </script>
 
-<section id="услуги" class="section services" aria-labelledby="services-heading">
+<section id="services" class="section services" aria-labelledby="services-heading">
   <div class="container">
     <header class="section-header reveal">
-      <p class="eyebrow">Что мы делаем</p>
-      <h2 id="services-heading">Наши услуги</h2>
+      <p class="eyebrow">{m.services_eyebrow()}</p>
+      <h2 id="services-heading">{m.services_heading()}</h2>
       <p class="section-lead">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
+        {m.services_lead()}
       </p>
     </header>
 

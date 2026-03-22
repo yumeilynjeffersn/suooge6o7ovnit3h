@@ -1,5 +1,5 @@
-<script>
-  // No reactive state needed — purely presentational
+<script lang="ts">
+  import * as m from '$lib/paraglide/messages';
 </script>
 
 <section class="hero" aria-labelledby="hero-heading">
@@ -11,31 +11,24 @@
       class="hero-img"
       fetchpriority="high"
     />
-    <!-- <img
-      src="/images/DSC7338_AuroraHDR2019-edit.jpg"
-      alt=""
-      class="hero-img"
-      fetchpriority="high"
-    /> -->
   </div>
 
   <div class="container hero-content">
-    <p class="hero-eyebrow">С 1998 года</p>
+    <p class="hero-eyebrow">{m.hero_since()}</p>
     <h1 id="hero-heading">
-      Сила<br />природы —<br /><em>в надёжных<br />руках</em>
+      {m.hero_heading_line1()}<br />{m.hero_heading_line2()}<br /><em>{m.hero_heading_accent()}</em>
     </h1>
     <p class="hero-sub">
-      Профессиональная лесозаготовка, переработка и поставки древесины по всей России.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      {m.hero_sub()}
     </p>
     <div class="hero-actions">
-      <a href="#услуги" class="btn-primary">Наши услуги</a>
-      <a href="#контакты" class="btn-outline">Получить расчёт</a>
+      <a href="#services" class="btn-primary">{m.hero_cta_primary()}</a>
+      <a href="#contacts" class="btn-outline">{m.hero_cta_secondary()}</a>
     </div>
-    <dl class="hero-stats" aria-label="Ключевые показатели">
-      <div><dt>25+</dt><dd>лет опыта</dd></div>
-      <div><dt>120k</dt><dd>м³ в год</dd></div>
-      <div><dt>300+</dt><dd>клиентов</dd></div>
+    <dl class="hero-stats" aria-label={m.hero_stats_aria()}>
+      <div><dt>{m.hero_stat1_value()}</dt><dd>{m.hero_stat1_label()}</dd></div>
+      <div><dt>{m.hero_stat2_value()}</dt><dd>{m.hero_stat2_label()}</dd></div>
+      <div><dt>{m.hero_stat3_value()}</dt><dd>{m.hero_stat3_label()}</dd></div>
     </dl>
   </div>
 

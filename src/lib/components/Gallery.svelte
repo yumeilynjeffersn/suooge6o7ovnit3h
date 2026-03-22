@@ -1,35 +1,18 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
 
-  const gallery = [
-    {
-      src: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80',
-      label: 'Заготовка леса',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=800&q=80',
-      label: 'Лесопильный цех',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
-      label: 'Лесные массивы',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1530533718754-001d2668365a?w=800&q=80',
-      label: 'Транспортировка',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=800&q=80',
-      label: 'Природа',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80',
-      label: 'Лесные дороги',
-    },
-  ];
+  const gallery = $derived([
+    { src: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80', label: m.gallery1_label() },
+    { src: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=800&q=80', label: m.gallery2_label() },
+    { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', label: m.gallery3_label() },
+    { src: 'https://images.unsplash.com/photo-1530533718754-001d2668365a?w=800&q=80', label: m.gallery4_label() },
+    { src: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=800&q=80', label: m.gallery5_label() },
+    { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', label: m.gallery6_label() },
+  ]);
 
   onMount(() => {
-    const els = document.querySelectorAll('#галерея .reveal');
+    const els = document.querySelectorAll('#gallery .reveal');
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -43,15 +26,15 @@
   });
 </script>
 
-<section id="галерея" class="section gallery" aria-labelledby="gallery-heading">
+<section id="gallery" class="section gallery" aria-labelledby="gallery-heading">
   <div class="container">
     <header class="section-header reveal">
-      <p class="eyebrow">Наши объекты</p>
-      <h2 id="gallery-heading">Галерея</h2>
+      <p class="eyebrow">{m.gallery_eyebrow()}</p>
+      <h2 id="gallery-heading">{m.gallery_heading()}</h2>
     </header>
   </div>
 
-  <div class="gallery-strip" role="list" aria-label="Фотогалерея">
+  <div class="gallery-strip" role="list" aria-label={m.gallery_aria()}>
     {#each gallery as item, i}
       <figure class="gallery-item reveal" style="--delay:{i * 60}ms" role="listitem">
         <img src={item.src} alt={item.label} loading="lazy" width="800" height="600" />

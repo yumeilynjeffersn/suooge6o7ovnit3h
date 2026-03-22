@@ -1,41 +1,16 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
 
-  const team = [
-    {
-      name: 'Алексей Борисов',
-      role: 'Генеральный директор',
-      img: 'https://randomuser.me/api/portraits/men/32.jpg',
-    },
-    {
-      name: 'Марина Соколова',
-      role: 'Главный технолог',
-      img: 'https://randomuser.me/api/portraits/women/44.jpg',
-    },
-    {
-      name: 'Дмитрий Лесников',
-      role: 'Начальник производства',
-      img: 'https://randomuser.me/api/portraits/men/67.jpg',
-    },
-    {
-      name: 'Ольга Рябова',
-      role: 'Руководитель логистики',
-      img: 'https://randomuser.me/api/portraits/women/25.jpg',
-    },
-    {
-      name: 'Виктор Корнеев',
-      role: 'Начальник склада',
-      img: 'https://randomuser.me/api/portraits/men/67.jpg',
-    },
-    {
-      name: 'Ангелина Вильнюс',
-      role: 'Руководитель отдела кибербезопасности',
-      img: 'https://randomuser.me/api/portraits/women/25.jpg',
-    },
-  ];
+  const team = $derived([
+    { name: m.team1_name(), role: m.team1_role(), img: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { name: m.team2_name(), role: m.team2_role(), img: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { name: m.team3_name(), role: m.team3_role(), img: 'https://randomuser.me/api/portraits/men/67.jpg' },
+    { name: m.team4_name(), role: m.team4_role(), img: 'https://randomuser.me/api/portraits/women/25.jpg' },
+  ]);
 
   onMount(() => {
-    const els = document.querySelectorAll('#команда .reveal');
+    const els = document.querySelectorAll('#team .reveal');
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -49,14 +24,13 @@
   });
 </script>
 
-<section id="команда" class="section team" aria-labelledby="team-heading">
+<section id="team" class="section team" aria-labelledby="team-heading">
   <div class="container">
     <header class="section-header reveal">
-      <p class="eyebrow">Профессионалы</p>
-      <h2 id="team-heading">Наши сотрудники</h2>
+      <p class="eyebrow">{m.team_eyebrow()}</p>
+      <h2 id="team-heading">{m.team_heading()}</h2>
       <p class="section-lead">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-        laudantium totam rem aperiam eaque ipsa quae.
+        {m.team_lead()}
       </p>
     </header>
 

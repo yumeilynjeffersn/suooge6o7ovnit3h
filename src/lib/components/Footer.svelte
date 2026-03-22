@@ -1,43 +1,50 @@
-<script>
-  const navLinks = ['Услуги', 'Новости', 'Галерея', 'Команда', 'Контакты'];
+<script lang="ts">
+  import * as m from '$lib/paraglide/messages';
+
+  const navLinks = $derived([
+    { text: m.nav_services(), anchor: 'services' },
+    { text: m.nav_news(), anchor: 'news' },
+    { text: m.nav_gallery(), anchor: 'gallery' },
+    { text: m.nav_team(), anchor: 'team' },
+    { text: m.nav_contacts(), anchor: 'contacts' },
+  ]);
 </script>
 
 <footer role="contentinfo">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="/" class="logo" aria-label="Секвойя-Массив — на главную">
+      <a href="/" class="logo" aria-label={m.footer_logo_aria()}>
         <span class="logo-mark">⬡</span>
-        <span class="logo-text">Секвойя-<strong>Массив</strong></span>
+        <span class="logo-text">NorthWood</span>
       </a>
       <p>
-        Профессиональная лесозаготовка с 1998 года. Lorem ipsum dolor sit amet consectetur
-        adipiscing elit sed do eiusmod.
+        {m.footer_tagline()}
       </p>
     </div>
 
-    <nav aria-label="Навигация в подвале">
-      <h4>Навигация</h4>
+    <nav aria-label="Footer navigation">
+      <h4>{m.footer_nav_heading()}</h4>
       <ul role="list">
         {#each navLinks as link}
-          <li><a href="#{link.toLowerCase()}">{link}</a></li>
+          <li><a href="#{link.anchor}">{link.text}</a></li>
         {/each}
       </ul>
     </nav>
 
     <div class="footer-contacts">
-      <h4>Контакты</h4>
+      <h4>{m.footer_contacts_heading()}</h4>
       <address>
-        <p>г. Архангельск, ул. Лесная, 45</p>
-        <p><a href="tel:+78182000000">+7 (8182) 00-00-00</a></p>
-        <p><a href="mailto:info@sevles.ru">info@sevles.ru</a></p>
+        <p>{m.footer_address()}</p>
+        <p><a href="tel:+78182000000">{m.contacts_phone_value()}</a></p>
+        <p><a href="mailto:info@northwood.ru">{m.contacts_email_value()}</a></p>
       </address>
     </div>
   </div>
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2026 Секвойя-Массив. Все права защищены.</p>
-      <p><a href="/privacy">Политика конфиденциальности</a></p>
+      <p>{m.footer_copyright()}</p>
+      <p><a href="/privacy">{m.footer_privacy()}</a></p>
     </div>
   </div>
 </footer>
