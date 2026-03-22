@@ -2,17 +2,17 @@
   import { onMount } from 'svelte';
   import * as m from '$lib/paraglide/messages';
 
-  onMount(() => {
-    const els = document.querySelectorAll('#contacts .reveal');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('#contacts .reveal');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

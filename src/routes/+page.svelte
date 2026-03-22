@@ -15,17 +15,17 @@
 
   // Global reveal observer — picks up any .reveal elements
   // not handled by individual components (e.g. added dynamically)
-  onMount(() => {
-    const els = document.querySelectorAll('.reveal:not(.visible)');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('.reveal:not(.visible)');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

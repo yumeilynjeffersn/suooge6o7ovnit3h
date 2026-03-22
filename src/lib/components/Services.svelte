@@ -2,7 +2,13 @@
   import { onMount } from 'svelte';
   import * as m from '$lib/paraglide/messages';
 
-  const services = $derived([
+  interface Service {
+    icon: string;
+    title: string;
+    desc: string;
+  }
+
+  const services = $derived<Service[]>([
     { icon: '🌲', title: m.service1_title(), desc: m.service1_desc() },
     { icon: '🪚', title: m.service2_title(), desc: m.service2_desc() },
     { icon: '🚛', title: m.service3_title(), desc: m.service3_desc() },
@@ -11,17 +17,17 @@
     { icon: '🔩', title: m.service6_title(), desc: m.service6_desc() },
   ]);
 
-  onMount(() => {
-    const els = document.querySelectorAll('#services .reveal');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('#services .reveal');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

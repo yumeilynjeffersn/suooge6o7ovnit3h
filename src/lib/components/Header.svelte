@@ -3,10 +3,15 @@
   import Controls from '$lib/components/Controls.svelte';
   import * as m from '$lib/paraglide/messages';
 
-  let menuOpen = $state(false);
-  let scrolled = $state(false);
+  interface NavLink {
+    text: string;
+    anchor: string;
+  }
 
-  const navLinks = $derived([
+  let menuOpen = $state<boolean>(false);
+  let scrolled = $state<boolean>(false);
+
+  const navLinks = $derived<NavLink[]>([
     { text: m.nav_services(), anchor: 'services' },
     { text: m.nav_news(), anchor: 'news' },
     { text: m.nav_gallery(), anchor: 'gallery' },
@@ -14,24 +19,24 @@
     { text: m.nav_contacts(), anchor: 'contacts' },
   ]);
 
-  onMount(() => {
-    const onScroll = () => {
+  onMount((): (() => void) | void => {
+    const onScroll = (): void => {
       scrolled = window.scrollY > 60;
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   });
 
-  function closeMenu() {
+  function closeMenu(): void {
     menuOpen = false;
   }
 
-  function toggleMenu() {
+  function toggleMenu(): void {
     menuOpen = !menuOpen;
   }
 </script>
 
-<header class:scrolled role="banner">
+<header class:scrolled>
   <div class="container header-inner">
     <a href="/" class="logo" aria-label={m.nav_logo_aria()}>
       <span class="logo-mark">⬡</span>
@@ -67,7 +72,7 @@
 </header>
 
 <style>
-  header[role='banner'] {
+  header {
     position: fixed;
     inset-block-start: 0;
     inset-inline: 0;
@@ -81,7 +86,7 @@
       padding var(--transition);
   }
 
-  header[role='banner'].scrolled {
+  header.scrolled {
     background: rgba(14, 15, 12, 0.92);
     border-color: var(--clr-border);
     padding-block: 0.8rem;
@@ -116,11 +121,6 @@
     font-weight: 400;
     letter-spacing: 0.04em;
     color: var(--clr-text);
-  }
-
-  .logo-text strong {
-    font-weight: 900;
-    color: var(--clr-accent);
   }
 
   nav {

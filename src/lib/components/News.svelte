@@ -2,7 +2,15 @@
   import { onMount } from 'svelte';
   import * as m from '$lib/paraglide/messages';
 
-  const news = $derived([
+  interface NewsArticle {
+    date: string;
+    category: string;
+    title: string;
+    excerpt: string;
+    img: string;
+  }
+
+  const news = $derived<NewsArticle[]>([
     {
       date: m.news1_date(),
       category: m.news1_category(),
@@ -26,17 +34,17 @@
     }
   ]);
 
-  onMount(() => {
-    const els = document.querySelectorAll('#news .reveal');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('#news .reveal');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

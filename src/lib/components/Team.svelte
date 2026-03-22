@@ -2,24 +2,30 @@
   import { onMount } from 'svelte';
   import * as m from '$lib/paraglide/messages';
 
-  const team = $derived([
+  interface TeamMember {
+    name: string;
+    role: string;
+    img: string;
+  }
+
+  const team = $derived<TeamMember[]>([
     { name: m.team1_name(), role: m.team1_role(), img: 'https://randomuser.me/api/portraits/men/32.jpg' },
     { name: m.team2_name(), role: m.team2_role(), img: 'https://randomuser.me/api/portraits/women/44.jpg' },
     { name: m.team3_name(), role: m.team3_role(), img: 'https://randomuser.me/api/portraits/men/67.jpg' },
     { name: m.team4_name(), role: m.team4_role(), img: 'https://randomuser.me/api/portraits/women/25.jpg' },
   ]);
 
-  onMount(() => {
-    const els = document.querySelectorAll('#team .reveal');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('#team .reveal');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

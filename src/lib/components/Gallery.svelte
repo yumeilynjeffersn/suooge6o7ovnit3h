@@ -2,7 +2,12 @@
   import { onMount } from 'svelte';
   import * as m from '$lib/paraglide/messages';
 
-  const gallery = $derived([
+  interface GalleryItem {
+    src: string;
+    label: string;
+  }
+
+  const gallery = $derived<GalleryItem[]>([
     { src: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80', label: m.gallery1_label() },
     { src: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=800&q=80', label: m.gallery2_label() },
     { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', label: m.gallery3_label() },
@@ -11,17 +16,17 @@
     { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', label: m.gallery6_label() },
   ]);
 
-  onMount(() => {
-    const els = document.querySelectorAll('#gallery .reveal');
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
+  onMount((): (() => void) | void => {
+    const els: NodeListOf<Element> = document.querySelectorAll('#gallery .reveal');
+    const obs: IntersectionObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((e: IntersectionObserverEntry) => {
           if (e.isIntersecting) e.target.classList.add('visible');
         });
       },
       { threshold: 0.1 }
     );
-    els.forEach((el) => obs.observe(el));
+    els.forEach((el: Element) => obs.observe(el));
     return () => obs.disconnect();
   });
 </script>

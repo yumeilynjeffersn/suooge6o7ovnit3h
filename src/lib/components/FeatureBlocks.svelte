@@ -1,33 +1,43 @@
-<script>
-  /* Svelte 5: Принимаем массив данных через $props */
+<script lang="ts">
+  interface FeatureBlock {
+    title: string;
+    desc: string;
+    video: string;
+    icon: string;
+  }
+
+  interface Props {
+    blocks?: FeatureBlock[];
+  }
+
   let { 
     blocks = [
       { 
-        title: "Заготовка", 
-        desc: "Современные харвестеры и опытные операторы.", 
-        video: "/video/01.mp4",
-        icon: '' // "🪓" 
+        title: 'Заготовка', 
+        desc: 'Современные харвестеры и опытные операторы.', 
+        video: '/video/01.mp4',
+        icon: ''
       },
       { 
-        title: "Переработка", 
-        desc: "Высокоточное производство пиломатериалов.", 
-        video: "/video/02.mp4",
-        icon: '' // "🪵" 
+        title: 'Переработка', 
+        desc: 'Высокоточное производство пиломатериалов.', 
+        video: '/video/02.mp4',
+        icon: ''
       },
       { 
-        title: "Логистика", 
-        desc: "Собственный автопарк для быстрой доставки.", 
-        video: "/video/03.mp4",
-        icon: '' // "🚛" 
+        title: 'Логистика', 
+        desc: 'Собственный автопарк для быстрой доставки.', 
+        video: '/video/03.mp4',
+        icon: ''
       },
       { 
-        title: "Экология", 
-        desc: "Восстановление лесов — наш приоритет.", 
-        video: "/video/04.mp4",
-        icon: '' // "🌱" 
+        title: 'Экология', 
+        desc: 'Восстановление лесов — наш приоритет.', 
+        video: '/video/04.mp4',
+        icon: ''
       }
     ]
-  } = $props();
+  }: Props = $props();
 </script>
 
 <section class="flex min-h-[320px] w-full flex-col overflow-hidden bg-black">

@@ -1,7 +1,12 @@
 <script lang="ts">
   import * as m from '$lib/paraglide/messages';
 
-  const navLinks = $derived([
+  interface NavLink {
+    text: string;
+    anchor: string;
+  }
+
+  const navLinks = $derived<NavLink[]>([
     { text: m.nav_services(), anchor: 'services' },
     { text: m.nav_news(), anchor: 'news' },
     { text: m.nav_gallery(), anchor: 'gallery' },
@@ -10,7 +15,7 @@
   ]);
 </script>
 
-<footer role="contentinfo">
+<footer>
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href="/" class="logo" aria-label={m.footer_logo_aria()}>
@@ -83,11 +88,6 @@
     font-weight: 400;
     letter-spacing: 0.04em;
     color: var(--clr-text);
-  }
-
-  .logo-text strong {
-    font-weight: 900;
-    color: var(--clr-accent);
   }
 
   .footer-brand p {
