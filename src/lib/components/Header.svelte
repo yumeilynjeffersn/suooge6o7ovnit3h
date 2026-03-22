@@ -1,10 +1,18 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
-
-  const navLinks = ['Услуги', 'Новости', 'Галерея', 'Команда', 'Контакты'];
+  import Controls from '$lib/components/Controls.svelte';
+  import * as m from '$lib/paraglide/messages';
 
   let menuOpen = $state(false);
   let scrolled = $state(false);
+
+  const navLinks = $derived([
+    { text: m.nav_services(), anchor: 'services' },
+    { text: m.nav_news(), anchor: 'news' },
+    { text: m.nav_gallery(), anchor: 'gallery' },
+    { text: m.nav_team(), anchor: 'team' },
+    { text: m.nav_contacts(), anchor: 'contacts' },
+  ]);
 
   onMount(() => {
     const onScroll = () => {
@@ -25,29 +33,31 @@
 
 <header class:scrolled role="banner">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="Секвойя-Массив — на главную">
+    <a href="/" class="logo" aria-label={m.nav_logo_aria()}>
       <span class="logo-mark">⬡</span>
-      <span class="logo-text">Секвойя-<strong>Массив</strong></span>
+      <span class="logo-text">NorthWood</span>
     </a>
 
-    <nav aria-label="Основная навигация">
+    <nav aria-label={m.nav_aria_label()}>
       <ul class="nav-list" class:open={menuOpen}>
         {#each navLinks as link}
           <li>
-            <a href="#{link.toLowerCase()}" onclick={closeMenu}>
-              {link}
+            <a href="#{link.anchor}" onclick={closeMenu}>
+              {link.text}
             </a>
           </li>
         {/each}
         <li>
-          <a href="#контакты" class="nav-cta" onclick={closeMenu}>Связаться</a>
+          <a href="#contacts" class="nav-cta" onclick={closeMenu}>{m.nav_cta()}</a>
         </li>
       </ul>
     </nav>
 
+    <Controls />
+
     <button
       class="burger"
-      aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+      aria-label={menuOpen ? m.nav_menu_close() : m.nav_menu_open()}
       aria-expanded={menuOpen}
       onclick={toggleMenu}
     >

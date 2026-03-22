@@ -1,5 +1,8 @@
-<script>
+
+
+<script lang="ts">
   import { onMount } from 'svelte';
+  import * as m from '$lib/paraglide/messages';
   import Header from '$lib/components/Header.svelte';
   import Hero from '$lib/components/Hero.svelte';
   import Services from '$lib/components/Services.svelte';
@@ -28,11 +31,8 @@
 </script>
 
 <svelte:head>
-  <title>Секвойя-Массив — Лесозаготовительная компания</title>
-  <meta
-    name="description"
-    content="Секвойя-Массив — профессиональная лесозаготовка, лесопиление и поставки древесины по всей России."
-  />
+  <title>{m.meta_title()}</title>
+  <meta name="description" content={m.meta_description()} />
 </svelte:head>
 
 <Header />
