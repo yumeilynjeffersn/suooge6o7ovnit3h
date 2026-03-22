@@ -1,0 +1,1139 @@
+<script>
+  import { onMount } from 'svelte';
+
+  let menuOpen = false;
+  let scrolled = false;
+
+  const services = [
+    {
+      icon: '🌲',
+      title: 'Лесозаготовка',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
+    },
+    {
+      icon: '🪚',
+      title: 'Лесопиление',
+      desc: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute.',
+    },
+    {
+      icon: '🚛',
+      title: 'Транспортировка',
+      desc: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint.',
+    },
+    {
+      icon: '📋',
+      title: 'Проектирование',
+      desc: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed perspiciatis.',
+    },
+    {
+      icon: '🌿',
+      title: 'Озеленение',
+      desc: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.',
+    },
+    {
+      icon: '🔩',
+      title: 'Переработка',
+      desc: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.',
+    },
+  ];
+
+  const news = [
+    {
+      date: '15 марта 2026',
+      category: 'Производство',
+      title: 'Запуск нового цеха лесопиления',
+      excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      img: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=600&q=80',
+    },
+    {
+      date: '28 февраля 2026',
+      category: 'Экология',
+      title: 'Программа восстановления лесов 2026',
+      excerpt: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.',
+      img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
+    },
+    {
+      date: '10 февраля 2026',
+      category: 'Компания',
+      title: 'Расширение географии поставок',
+      excerpt: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur sint occaecat.',
+      img: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=600&q=80',
+    },
+  ];
+
+  const gallery = [
+    { type: 'img', src: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80', label: 'Заготовка леса' },
+    { type: 'img', src: 'https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?w=800&q=80', label: 'Лесопильный цех' },
+    { type: 'img', src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', label: 'Лесные массивы' },
+    { type: 'img', src: 'https://images.unsplash.com/photo-1530533718754-001d2668365a?w=800&q=80', label: 'Транспортировка' },
+    { type: 'img', src: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=800&q=80', label: 'Природа' },
+    { type: 'img', src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', label: 'Лесные дороги' },
+  ];
+
+  const team = [
+    { name: 'Алексей Борисов', role: 'Генеральный директор', img: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { name: 'Марина Соколова', role: 'Главный технолог', img: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { name: 'Дмитрий Лесников', role: 'Начальник производства', img: 'https://randomuser.me/api/portraits/men/67.jpg' },
+    { name: 'Ольга Рябова', role: 'Руководитель логистики', img: 'https://randomuser.me/api/portraits/women/25.jpg' },
+  ];
+
+  const navLinks = ['Услуги', 'Новости', 'Галерея', 'Команда', 'Контакты'];
+
+  onMount(() => {
+    const onScroll = () => { scrolled = window.scrollY > 60; };
+    window.addEventListener('scroll', onScroll);
+
+    // Intersection observer for reveal animations
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+
+    return () => window.removeEventListener('scroll', onScroll);
+  });
+</script>
+
+<svelte:head>
+  <title>Секвойя-Массив — Лесозаготовительная компания</title>
+  <meta name="description" content="Секвойя-Массив — профессиональная лесозаготовка, лесопиление и поставки древесины по всей России." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet" />
+</svelte:head>
+
+<!-- HEADER -->
+<header class:scrolled role="banner">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Секвойя-Массив — на главную">
+      <span class="logo-mark">⬡</span>
+      <span class="logo-text">Секвойя-<strong>Массив</strong></span>
+    </a>
+
+    <nav aria-label="Основная навигация">
+      <ul class="nav-list" class:open={menuOpen}>
+        {#each navLinks as link}
+          <li>
+            <a href="#{link.toLowerCase()}" on:click={() => menuOpen = false}>
+              {link}
+            </a>
+          </li>
+        {/each}
+        <li><a href="#contacts" class="nav-cta" on:click={() => menuOpen = false}>Связаться</a></li>
+      </ul>
+    </nav>
+
+    <button
+      class="burger"
+      aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+      aria-expanded={menuOpen}
+      on:click={() => menuOpen = !menuOpen}
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-overlay"></div>
+      <img
+        src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=1800&q=85"
+        alt=""
+        class="hero-img"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">С 1998 года</p>
+      <h1 id="hero-heading">
+        Сила<br />природы —<br /><em>в надёжных<br />руках</em>
+      </h1>
+      <p class="hero-sub">
+        Профессиональная лесозаготовка, переработка и поставки древесины
+        по всей России. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Наши услуги</a>
+        <a href="#contacts" class="btn-outline">Получить расчёт</a>
+      </div>
+      <dl class="hero-stats" aria-label="Ключевые показатели">
+        <div><dt>25+</dt><dd>лет опыта</dd></div>
+        <div><dt>120k</dt><dd>м³ в год</dd></div>
+        <div><dt>300+</dt><dd>клиентов</dd></div>
+      </dl>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">↓</div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="услуги" class="section services" aria-labelledby="services-heading">
+    <div class="container">
+      <header class="section-header reveal">
+        <p class="eyebrow">Что мы делаем</p>
+        <h2 id="services-heading">Наши услуги</h2>
+        <p class="section-lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua.
+        </p>
+      </header>
+
+      <ul class="services-grid" role="list">
+        {#each services as svc, i}
+          <li class="service-card reveal" style="--delay:{i * 80}ms">
+            <span class="service-icon" aria-hidden="true">{svc.icon}</span>
+            <h3>{svc.title}</h3>
+            <p>{svc.desc}</p>
+            <span class="service-num" aria-hidden="true">0{i + 1}</span>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="новости" class="section news" aria-labelledby="news-heading">
+    <div class="container">
+      <header class="section-header reveal">
+        <p class="eyebrow">Актуальное</p>
+        <h2 id="news-heading">Новости и блог</h2>
+      </header>
+
+      <ul class="news-grid" role="list">
+        {#each news as article, i}
+          <li class="news-card reveal" style="--delay:{i * 100}ms">
+            <a href="/blog/post-{i + 1}" class="news-card-inner">
+              <figure class="news-img-wrap">
+                <img src={article.img} alt={article.title} loading="lazy" width="600" height="400" />
+                <figcaption class="news-category">{article.category}</figcaption>
+              </figure>
+              <div class="news-body">
+                <time datetime="2026">{article.date}</time>
+                <h3>{article.title}</h3>
+                <p>{article.excerpt}</p>
+                <span class="read-more">Читать далее →</span>
+              </div>
+            </a>
+          </li>
+        {/each}
+      </ul>
+
+      <div class="section-cta reveal">
+        <a href="/blog" class="btn-outline">Все публикации</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="галерея" class="section gallery" aria-labelledby="gallery-heading">
+    <div class="container">
+      <header class="section-header reveal">
+        <p class="eyebrow">Наши объекты</p>
+        <h2 id="gallery-heading">Галерея</h2>
+      </header>
+    </div>
+
+    <div class="gallery-strip" role="list" aria-label="Фотогалерея">
+      {#each gallery as item, i}
+        <figure class="gallery-item reveal" style="--delay:{i * 60}ms" role="listitem">
+          <img src={item.src} alt={item.label} loading="lazy" width="800" height="600" />
+          <figcaption>{item.label}</figcaption>
+        </figure>
+      {/each}
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="команда" class="section team" aria-labelledby="team-heading">
+    <div class="container">
+      <header class="section-header reveal">
+        <p class="eyebrow">Профессионалы</p>
+        <h2 id="team-heading">Наши сотрудники</h2>
+        <p class="section-lead">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+          doloremque laudantium totam rem aperiam eaque ipsa quae.
+        </p>
+      </header>
+
+      <ul class="team-grid" role="list">
+        {#each team as member, i}
+          <li class="team-card reveal" style="--delay:{i * 90}ms">
+            <div class="team-photo-wrap">
+              <img src={member.img} alt={member.name} loading="lazy" width="200" height="200" />
+            </div>
+            <div class="team-info">
+              <h3>{member.name}</h3>
+              <p class="team-role">{member.role}</p>
+              <p class="team-bio">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="контакты" class="section contacts" aria-labelledby="contacts-heading">
+    <div class="container contacts-inner">
+      <div class="contacts-info reveal">
+        <p class="eyebrow">Свяжитесь с нами</p>
+        <h2 id="contacts-heading">Контакты</h2>
+        <address>
+          <ul class="contacts-list" role="list">
+            <li>
+              <span class="c-icon" aria-hidden="true">📍</span>
+              <div>
+                <strong>Адрес</strong>
+                <span>г. Архангельск, ул. Лесная, 45, офис 12</span>
+              </div>
+            </li>
+            <li>
+              <span class="c-icon" aria-hidden="true">📞</span>
+              <div>
+                <strong>Телефон</strong>
+                <a href="tel:+78182000000">+7 (8182) 00-00-00</a>
+              </div>
+            </li>
+            <li>
+              <span class="c-icon" aria-hidden="true">✉️</span>
+              <div>
+                <strong>E-mail</strong>
+                <a href="mailto:info@sevles.ru">info@sevles.ru</a>
+              </div>
+            </li>
+            <li>
+              <span class="c-icon" aria-hidden="true">🕐</span>
+              <div>
+                <strong>Режим работы</strong>
+                <span>Пн–Пт: 9:00 — 18:00</span>
+              </div>
+            </li>
+          </ul>
+        </address>
+      </div>
+
+      <div class="contacts-form reveal" style="--delay:100ms">
+        <h3>Оставить заявку</h3>
+        <form novalidate aria-label="Форма обратной связи">
+          <div class="field">
+            <label for="name">Ваше имя</label>
+            <input id="name" type="text" name="name" placeholder="Иван Иванов" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required />
+          </div>
+          <div class="field">
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" rows="4" placeholder="Расскажите о вашем запросе..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary full">Отправить заявку</button>
+          <p class="form-note">
+            Нажимая кнопку, вы соглашаетесь с
+            <a href="/privacy">политикой конфиденциальности</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo" aria-label="Секвойя-Массив — на главную">
+        <span class="logo-mark">⬡</span>
+        <span class="logo-text">Секвойя-Массив<strong>Лес</strong></span>
+      </a>
+      <p>Профессиональная лесозаготовка с 1998 года. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.</p>
+    </div>
+
+    <nav aria-label="Навигация в подвале">
+      <h4>Навигация</h4>
+      <ul role="list">
+        {#each navLinks as link}
+          <li><a href="#{link.toLowerCase()}">{link}</a></li>
+        {/each}
+      </ul>
+    </nav>
+
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+      <address>
+        <p>г. Архангельск, ул. Лесная, 45</p>
+        <p><a href="tel:+78182000000">+7 (8182) 00-00-00</a></p>
+        <p><a href="mailto:info@sevles.ru">info@sevles.ru</a></p>
+      </address>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 Секвойя-Массив. Все права защищены.</p>
+      <p><a href="/privacy">Политика конфиденциальности</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ── DESIGN TOKENS ── */
+  :global(:root) {
+    --clr-bg: #0e0f0c;
+    --clr-surface: #161810;
+    --clr-surface2: #1e2118;
+    --clr-border: rgba(255,255,255,0.08);
+    --clr-text: #e8e5dc;
+    --clr-muted: #8a8a7a;
+    --clr-accent: #b8d444;
+    --clr-accent2: #e8a03a;
+    --clr-wood: #5c3d1e;
+
+    --font-display: 'Unbounded', sans-serif;
+    --font-body: 'Geologica', sans-serif;
+
+    --radius: 4px;
+    --radius-lg: 12px;
+    --gap: clamp(1rem, 3vw, 2rem);
+    --section-py: clamp(4rem, 8vw, 7rem);
+    --max-w: 1200px;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  :global(img) { display: block; max-width: 100%; height: auto; }
+  :global(a) { color: inherit; text-decoration: none; }
+  :global(ul) { list-style: none; }
+  :global(address) { font-style: normal; }
+
+  /* ── REVEAL ANIMATION ── */
+  :global(.reveal) {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease var(--delay, 0ms), transform 0.65s ease var(--delay, 0ms);
+  }
+  :global(.reveal.visible) { opacity: 1; transform: none; }
+
+  /* ── LAYOUT ── */
+  .container {
+    width: 100%;
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  .section { padding-block: var(--section-py); }
+
+  .section-header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .section-lead {
+    color: var(--clr-muted);
+    max-width: 52ch;
+    margin-inline: auto;
+    margin-top: 0.75rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    margin-bottom: 0.6rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary, .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8em 1.8em;
+    border-radius: var(--radius);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--clr-accent);
+    color: #0e0f0c;
+    border: 2px solid transparent;
+  }
+  .btn-primary:hover { background: #cfe84e; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--clr-text);
+    border: 2px solid rgba(255,255,255,0.25);
+  }
+  .btn-outline:hover { border-color: var(--clr-accent); color: var(--clr-accent); transform: translateY(-2px); }
+  .btn-primary.full { width: 100%; justify-content: center; }
+
+  .section-cta { text-align: center; margin-top: 3rem; }
+
+  /* ── HEADER ── */
+  header[role="banner"] {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 100;
+    padding-block: 1.2rem;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background var(--transition), border-color var(--transition), padding var(--transition);
+  }
+  header[role="banner"].scrolled {
+    background: rgba(14,15,12,0.92);
+    border-color: var(--clr-border);
+    padding-block: 0.8rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .logo-mark {
+    font-size: 1.5rem;
+    color: var(--clr-accent);
+    line-height: 1;
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--clr-text);
+  }
+  .logo-text strong { font-weight: 900; color: var(--clr-accent); }
+
+  header[role="banner"] nav { flex: 1; display: flex; justify-content: flex-end; }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1.75rem);
+    flex-wrap: wrap;
+  }
+  .nav-list a {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(232,229,220,0.75);
+    transition: color var(--transition);
+  }
+  .nav-list a:hover { color: var(--clr-accent); }
+  .nav-cta {
+    background: var(--clr-accent) !important;
+    color: #0e0f0c !important;
+    padding: 0.45em 1.1em;
+    border-radius: var(--radius);
+  }
+  .nav-cta:hover { background: #cfe84e !important; }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--clr-text);
+    transition: var(--transition);
+    border-radius: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(14,15,12,0.9) 0%,
+      rgba(14,15,12,0.65) 55%,
+      rgba(14,15,12,0.4) 100%
+    );
+    z-index: 1;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 1.5rem;
+    max-width: 700px;
+    animation: heroIn 1s ease 0.2s both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--clr-accent);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--clr-text);
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--clr-accent);
+    display: block;
+  }
+
+  .hero-sub {
+    color: rgba(232,229,220,0.7);
+    max-width: 45ch;
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--clr-border);
+    flex-wrap: wrap;
+  }
+  .hero-stats > div { display: flex; flex-direction: column; }
+  .hero-stats dt {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    color: var(--clr-accent);
+    line-height: 1;
+  }
+  .hero-stats dd {
+    font-size: 0.75rem;
+    color: var(--clr-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: clamp(1rem, 4vw, 2.5rem);
+    z-index: 2;
+    font-size: 1.5rem;
+    color: var(--clr-accent);
+    animation: bounce 2s ease infinite;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.2em;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--clr-surface); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: var(--gap);
+  }
+
+  .service-card {
+    position: relative;
+    background: var(--clr-surface2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: border-color var(--transition), transform var(--transition);
+    overflow: hidden;
+  }
+  .service-card:hover {
+    border-color: var(--clr-accent);
+    transform: translateY(-4px);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,212,68,0.04), transparent);
+    pointer-events: none;
+  }
+  .service-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+    filter: grayscale(0.3);
+  }
+  .service-card h3 { margin-bottom: 0.6rem; }
+  .service-card p { color: var(--clr-muted); font-size: 0.9rem; line-height: 1.65; }
+  .service-num {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── NEWS ── */
+  .news { background: var(--clr-bg); }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+    gap: var(--gap);
+  }
+
+  .news-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .news-card-inner:hover {
+    border-color: rgba(184,212,68,0.35);
+    transform: translateY(-4px);
+  }
+
+  .news-img-wrap {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin: 0;
+  }
+  .news-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .news-card-inner:hover .news-img-wrap img { transform: scale(1.06); }
+
+  .news-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--clr-accent);
+    color: #0e0f0c;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3em 0.75em;
+    border-radius: 2px;
+  }
+
+  .news-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .news-body time {
+    font-size: 0.75rem;
+    color: var(--clr-muted);
+    letter-spacing: 0.05em;
+  }
+  .news-body h3 { font-size: 1rem; }
+  .news-body p { color: var(--clr-muted); font-size: 0.88rem; flex: 1; }
+  .read-more {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    margin-top: 0.5rem;
+  }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--clr-surface); }
+
+  .gallery-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-inline: clamp(1rem, 4vw, calc((100vw - var(--max-w)) / 2 + 2.5rem));
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-accent) transparent;
+  }
+  .gallery-strip::-webkit-scrollbar { height: 4px; }
+  .gallery-strip::-webkit-scrollbar-track { background: transparent; }
+  .gallery-strip::-webkit-scrollbar-thumb { background: var(--clr-accent); border-radius: 2px; }
+
+  .gallery-item {
+    flex: 0 0 clamp(260px, 35vw, 480px);
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.07); }
+  .gallery-item figcaption {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+    background: linear-gradient(transparent, rgba(14,15,12,0.85));
+    color: var(--clr-text);
+    padding: 1.5rem 1rem 0.75rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .gallery-item:hover figcaption { opacity: 1; }
+
+  /* ── TEAM ── */
+  .team { background: var(--clr-bg); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: var(--gap);
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .team-card:hover { border-color: var(--clr-accent); transform: translateY(-4px); }
+
+  .team-photo-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--clr-accent);
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+  }
+  .team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+  .team-role {
+    font-size: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    margin-bottom: 0.75rem;
+  }
+  .team-bio { color: var(--clr-muted); font-size: 0.85rem; }
+
+  /* ── CONTACTS ── */
+  .contacts {
+    background: var(--clr-surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .contacts::before {
+    content: '';
+    position: absolute;
+    top: -10rem;
+    right: -10rem;
+    width: 35rem;
+    height: 35rem;
+    background: radial-gradient(circle, rgba(184,212,68,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contacts-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .contacts-info h2 { margin-bottom: 1.5rem; }
+
+  .contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .contacts-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .c-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .contacts-list strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    margin-bottom: 0.2rem;
+  }
+  .contacts-list a { color: var(--clr-text); transition: color var(--transition); }
+  .contacts-list a:hover { color: var(--clr-accent); }
+
+  .contacts-form {
+    background: var(--clr-surface2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .contacts-form h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .field label {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clr-muted);
+  }
+  .field input, .field textarea {
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    color: var(--clr-text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    transition: border-color var(--transition);
+    width: 100%;
+    resize: vertical;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--clr-muted); }
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--clr-accent);
+  }
+  .form-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--clr-muted);
+    text-align: center;
+  }
+  .form-note a { color: var(--clr-accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080908;
+    border-top: 1px solid var(--clr-border);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .footer-brand .logo { margin-bottom: 1rem; }
+  .footer-brand p { color: var(--clr-muted); font-size: 0.85rem; max-width: 32ch; }
+
+  footer nav h4, .footer-contacts h4 {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clr-muted);
+    margin-bottom: 1rem;
+  }
+  footer nav ul { display: flex; flex-direction: column; gap: 0.5rem; }
+  footer nav a {
+    color: rgba(232,229,220,0.65);
+    font-size: 0.9rem;
+    transition: color var(--transition);
+  }
+  footer nav a:hover { color: var(--clr-accent); }
+
+  .footer-contacts p { color: rgba(232,229,220,0.65); font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .footer-contacts a { transition: color var(--transition); }
+  .footer-contacts a:hover { color: var(--clr-accent); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--clr-border);
+    padding-block: 1.25rem;
+  }
+  .footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: var(--clr-muted); }
+  .footer-bottom a { color: var(--clr-muted); transition: color var(--transition); }
+  .footer-bottom a:hover { color: var(--clr-accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .contacts-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 680px) {
+    .burger { display: flex; }
+
+    header[role="banner"] nav { position: fixed; inset: 0; pointer-events: none; }
+    .nav-list {
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      width: min(80vw, 300px);
+      height: 100dvh;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 3rem 2rem;
+      background: var(--clr-surface);
+      border-left: 1px solid var(--clr-border);
+      transform: translateX(100%);
+      transition: transform var(--transition);
+      pointer-events: none;
+    }
+    .nav-list.open { transform: none; pointer-events: all; }
+    .nav-list a { font-size: 0.9rem; }
+
+    footer { pointer-events: all; }
+
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-brand { grid-column: auto; }
+
+    h1 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+  }
+</style>

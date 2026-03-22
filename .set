@@ -1,0 +1,4 @@
+FORCE=true;  readonly FORCE
+DEBUG=true;  readonly DEBUG
+DUMMY=false; readonly DUMMY # Enable Dummy Mode (aka Dry Run or vice versa — it doesn’t matter (here))
+AUTOCONFIRMATION=true; readonly AUTOCONFIRMATION
