@@ -40,7 +40,7 @@
   <div class="container header-inner">
     <a href="/" class="logo" aria-label={m.nav_logo_aria()}>
       <span class="logo-mark">⬡</span>
-      <span class="logo-text">NorthWood</span>
+      <span class="logo-text">{m.company_name()}</span>
     </a>
 
     <nav aria-label={m.nav_aria_label()}>

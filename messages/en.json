@@ -1,6 +1,8 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  
+
+  "company_name": "Sequoia Massive",
+
   "meta_title": "NorthWood — Timber Harvesting Company",
   "meta_description": "NorthWood — professional timber harvesting, sawmilling and lumber supply across Russia.",
   

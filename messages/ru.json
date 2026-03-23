@@ -1,8 +1,10 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  
-  "meta_title": "СевЛес — Лесозаготовительная компания",
-  "meta_description": "СевЛес — профессиональная лесозаготовка, лесопиление и поставки древесины по всей России.",
+
+  "company_name": "Секвойя Массив",
+
+  "meta_title": "Секвойя Массив — Лесозаготовительная компания",
+  "meta_description": "Секвойя Массив — профессиональная лесозаготовка, лесопиление и поставки древесины по всей России.",
   
   "nav_services": "Услуги",
   "nav_news": "Новости",
@@ -10,7 +12,7 @@
   "nav_team": "Команда",
   "nav_contacts": "Контакты",
   "nav_cta": "Связаться",
-  "nav_logo_aria": "СевЛес — на главную",
+  "nav_logo_aria": "Секвойя Массив — на главную",
   "nav_menu_open": "Открыть меню",
   "nav_menu_close": "Закрыть меню",
   "nav_aria_label": "Основная навигация",
@@ -112,9 +114,9 @@
   "footer_nav_heading": "Навигация",
   "footer_contacts_heading": "Контакты",
   "footer_address": "г. Архангельск, ул. Лесная, 45",
-  "footer_copyright": "© 2026 СевЛес. Все права защищены.",
+  "footer_copyright": "© 2026 Секвойя Массив. Все права защищены.",
   "footer_privacy": "Политика конфиденциальности",
-  "footer_logo_aria": "СевЛес — на главную",
+  "footer_logo_aria": "Секвойя Массив — на главную",
   
   "controls_theme_system": "Системная",
   "controls_theme_light": "Светлая",
