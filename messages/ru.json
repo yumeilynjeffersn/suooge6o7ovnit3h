@@ -1,7 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
 
-  "company_name": "Секвойя Массив",
+  "company_name": "Секвойя-Массив",
+  "phone_number": "+78182000000",
+  "email_address": "info@northwood.ru",
 
   "meta_title": "Секвойя Массив — Лесозаготовительная компания",
   "meta_description": "Секвойя Массив — профессиональная лесозаготовка, лесопиление и поставки древесины по всей России.",
@@ -93,9 +95,7 @@
   "contacts_address_label": "Адрес",
   "contacts_address_value": "г. Архангельск, ул. Лесная, 45, офис 12",
   "contacts_phone_label": "Телефон",
-  "contacts_phone_value": "+7 (8182) 00-00-00",
   "contacts_email_label": "E-mail",
-  "contacts_email_value": "info@sevles.ru",
   "contacts_hours_label": "Режим работы",
   "contacts_hours_value": "Пн–Пт: 9:00 — 18:00",
   "contacts_form_heading": "Оставить заявку",

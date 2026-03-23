@@ -35,14 +35,14 @@
             <span class="c-icon" aria-hidden="true">📞</span>
             <div>
               <strong>{m.contacts_phone_label()}</strong>
-              <a href="tel:+78182000000">{m.contacts_phone_value()}</a>
+              <a href="tel:{m.phone_number()}">{m.phone_number()}</a>
             </div>
           </li>
           <li>
             <span class="c-icon" aria-hidden="true">✉️</span>
             <div>
               <strong>{m.contacts_email_label()}</strong>
-              <a href="mailto:info@northwood.ru">{m.contacts_email_value()}</a>
+              <a href="mailto:{m.email_address()}">{m.email_address()}</a>
             </div>
           </li>
           <li>

@@ -20,11 +20,9 @@
     <div class="footer-brand">
       <a href="/" class="logo" aria-label={m.footer_logo_aria()}>
         <span class="logo-mark">⬡</span>
-        <span class="logo-text">NorthWood</span>
+        <span class="logo-text">{m.company_name()}</span>
       </a>
-      <p>
-        {m.footer_tagline()}
-      </p>
+      <p>{m.footer_tagline()}</p>
     </div>
 
     <nav aria-label="Footer navigation">
@@ -40,8 +38,8 @@
       <h4>{m.footer_contacts_heading()}</h4>
       <address>
         <p>{m.footer_address()}</p>
-        <p><a href="tel:+78182000000">{m.contacts_phone_value()}</a></p>
-        <p><a href="mailto:info@northwood.ru">{m.contacts_email_value()}</a></p>
+        <p><a href="tel:{m.phone_number()}">{m.phone_number()}</a></p>
+        <p><a href="mailto:{m.email_address()}">{m.email_address()}</a></p>
       </address>
     </div>
   </div>

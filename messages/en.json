@@ -2,6 +2,8 @@
   "$schema": "https://inlang.com/schema/inlang-message-format",
 
   "company_name": "Sequoia Massive",
+  "phone_number": "+78182000000",
+  "email_address": "info@northwood.ru",
 
   "meta_title": "Sequoia Massive — Timber Harvesting Company",
   "meta_description": "Sequoia Massive — professional timber harvesting, sawmilling and lumber supply across Russia.",
@@ -93,9 +95,7 @@
   "contacts_address_label": "Address",
   "contacts_address_value": "Arkhangelsk, Lesnaya St. 45, office 12",
   "contacts_phone_label": "Phone",
-  "contacts_phone_value": "+7 (8182) 00-00-00",
   "contacts_email_label": "Email",
-  "contacts_email_value": "info@northwood.ru",
   "contacts_hours_label": "Working hours",
   "contacts_hours_value": "Mon–Fri: 9:00 AM — 6:00 PM",
   "contacts_form_heading": "Send a request",
