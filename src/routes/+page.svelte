@@ -1,17 +1,16 @@
-
-
 <script lang="ts">
   import { onMount } from 'svelte';
-  import * as m from '$lib/paraglide/messages';
-  import Header from '$lib/components/Header.svelte';
-  import Hero from '$lib/components/Hero.svelte';
-  import Services from '$lib/components/Services.svelte';
+  import * as m        from '$lib/paraglide/messages';
+  import Header        from '$lib/components/Header.svelte';
+  import Hero          from '$lib/components/Hero.svelte';
+  import Services      from '$lib/components/Services.svelte';
   import FeatureBlocks from '$lib/components/FeatureBlocks.svelte';
-  import News from '$lib/components/News.svelte';
-  import Gallery from '$lib/components/Gallery.svelte';
-  import Team from '$lib/components/Team.svelte';
-  import Contacts from '$lib/components/Contacts.svelte';
-  import Footer from '$lib/components/Footer.svelte';
+  import Carousel      from '$lib/components/Carousel.svelte';
+  import News          from '$lib/components/News.svelte';
+  import Gallery       from '$lib/components/Gallery.svelte';
+  import Team          from '$lib/components/Team.svelte';
+  import Contacts      from '$lib/components/Contacts.svelte';
+  import Footer        from '$lib/components/Footer.svelte';
 
   // Global reveal observer — picks up any .reveal elements
   // not handled by individual components (e.g. added dynamically)
@@ -41,6 +40,7 @@
   <Hero />
   <Services />
   <FeatureBlocks />
+  <Carousel />
   <News />
   <Gallery />
   <Team />

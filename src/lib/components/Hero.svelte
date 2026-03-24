@@ -15,8 +15,10 @@
 
   <div class="container hero-content">
     <p class="hero-eyebrow">{m.hero_since()}</p>
-    <h1 id="hero-heading">
-      {m.hero_heading_line1()}<br />{m.hero_heading_line2()}<br /><em>{m.hero_heading_accent()}</em>
+    <h1 id="hero-heading" class="text-white">
+      {m.hero_heading_line1()}
+      <br />{m.hero_heading_line2()}
+      <br /><em class="text-(--clr-accent)">{m.hero_heading_accent()}</em>
     </h1>
     <p class="hero-sub">
       {m.hero_sub()}
@@ -122,13 +124,12 @@
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.03em;
-    color: var(--clr-text);
   }
 
   h1 em {
     font-style: normal;
-    color: var(--clr-accent);
     display: block;
+    /*color: var(--clr-accent);*/
   }
 
   .hero-sub {
