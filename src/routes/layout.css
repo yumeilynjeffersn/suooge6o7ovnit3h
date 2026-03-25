@@ -61,11 +61,18 @@ html {
 }
 
 /* ── RESET ── */
-body *,
-body *::before,
-body *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+/* Reset margin and padding only for specific elements */
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote {
   margin: 0;
+}
+
+ul, ol {
   padding: 0;
 }
 
