@@ -15,10 +15,10 @@
   ]);
 </script>
 
-<footer>
+<footer class="bg-[#080908]" style="border-top: 1px solid var(--clr-border);">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="/" class="logo" aria-label={m.footer_logo_aria()}>
+      <a href="/" class="logo flex items-center gap-[ 0.5rem] mb-1" aria-label={m.footer_logo_aria()}>
         <span class="logo-mark">⬡</span>
         <span class="logo-text">{m.company_name()}</span>
       </a>
@@ -53,11 +53,6 @@
 </footer>
 
 <style>
-  footer {
-    background: #080908;
-    border-top: 1px solid var(--clr-border);
-  }
-
   .footer-inner {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -67,11 +62,7 @@
   }
 
   .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     text-decoration: none;
-    margin-bottom: 1rem;
   }
 
   .logo-mark {

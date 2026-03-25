@@ -97,21 +97,6 @@
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  h3 {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.25;
-  }
-
   .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));

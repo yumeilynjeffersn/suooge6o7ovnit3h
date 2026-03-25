@@ -40,7 +40,7 @@
   <div class="container header-inner">
     <a href="/" class="logo" aria-label={m.nav_logo_aria()}>
       <span class="logo-mark">⬡</span>
-      <span class="logo-text">{m.company_name()}</span>
+      <span class="logo-text text-white">{m.company_name()}</span>
     </a>
 
     <nav aria-label={m.nav_aria_label()}>
@@ -65,7 +65,7 @@
       aria-label={menuOpen ? m.nav_menu_close() : m.nav_menu_open()}
       aria-expanded={menuOpen}
       onclick={toggleMenu}
-    >
+      >
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -120,7 +120,6 @@
     font-size: 1.1rem;
     font-weight: 400;
     letter-spacing: 0.04em;
-    color: var(--clr-text);
   }
 
   nav {
@@ -151,14 +150,14 @@
   }
 
   .nav-cta {
-    background: var(--clr-accent) !important;
+    background: var(--clr-accent-2) !important;
     color: #0e0f0c !important;
     padding: 0.45em 1.1em;
     border-radius: var(--radius);
   }
 
   .nav-cta:hover {
-    background: #cfe84e !important;
+    background: var(--clr-accent-hover-2) !important;
   }
 
   .burger {

@@ -17,11 +17,11 @@
   });
 </script>
 
-<section id="contacts" class="section contacts" aria-labelledby="contacts-heading">
+<section id="contacts" class="section contacts relative" aria-labelledby="contacts-heading">
   <div class="container contacts-inner">
     <div class="contacts-info reveal">
       <p class="eyebrow">{m.contacts_eyebrow()}</p>
-      <h2 id="contacts-heading">{m.contacts_heading()}</h2>
+      <h2 class="!mb-8" id="contacts-heading">{m.contacts_heading()}</h2>
       <address>
         <ul class="contacts-list" role="list">
           <li>
@@ -103,10 +103,8 @@
 <style>
   .contacts {
     background: var(--clr-surface);
-    position: relative;
     overflow: hidden;
   }
-
   .contacts::before {
     content: '';
     position: absolute;
@@ -117,48 +115,27 @@
     background: radial-gradient(circle, rgba(184, 212, 68, 0.06) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .contacts-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 6vw, 5rem);
     align-items: start;
   }
-
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  h3 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-  }
-
   .contacts-list {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
   }
-
   .contacts-list li {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
   }
-
   .c-icon {
     font-size: 1.3rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
   }
-
   .contacts-list strong {
     display: block;
     font-family: var(--font-display);
@@ -169,30 +146,25 @@
     color: var(--clr-accent);
     margin-bottom: 0.2rem;
   }
-
   .contacts-list a {
     color: var(--clr-text);
     transition: color var(--transition);
   }
-
   .contacts-list a:hover {
     color: var(--clr-accent);
   }
-
   .contacts-form {
     background: var(--clr-surface2);
     border: 1px solid var(--clr-border);
     border-radius: var(--radius-lg);
     padding: clamp(1.5rem, 3vw, 2.5rem);
   }
-
   .field {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
     margin-bottom: 1rem;
   }
-
   .field label {
     font-family: var(--font-display);
     font-size: 0.62rem;
@@ -201,7 +173,6 @@
     text-transform: uppercase;
     color: var(--clr-muted);
   }
-
   .field input,
   .field textarea {
     background: var(--clr-bg);
@@ -216,18 +187,15 @@
     width: 100%;
     resize: vertical;
   }
-
   .field input::placeholder,
   .field textarea::placeholder {
     color: var(--clr-muted);
   }
-
   .field input:focus,
   .field textarea:focus {
     outline: none;
     border-color: var(--clr-accent);
   }
-
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -246,23 +214,19 @@
     color: #0e0f0c;
     border: 2px solid transparent;
   }
-
   .btn-primary:hover {
     background: #cfe84e;
     transform: translateY(-2px);
   }
-
   .form-note {
     margin-top: 0.75rem;
     font-size: 0.75rem;
     color: var(--clr-muted);
     text-align: center;
   }
-
   .form-note a {
     color: var(--clr-accent);
   }
-
   @media (max-width: 900px) {
     .contacts-inner {
       grid-template-columns: 1fr;

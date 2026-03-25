@@ -59,14 +59,6 @@
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
   .gallery-strip {
     display: flex;
     overflow-x: auto;

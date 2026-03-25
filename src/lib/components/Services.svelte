@@ -72,22 +72,6 @@
     margin-top: 0.75rem;
   }
 
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    font-weight: 700;
-    line-height: 1.25;
-    margin-bottom: 0.5rem;
-  }
-
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));

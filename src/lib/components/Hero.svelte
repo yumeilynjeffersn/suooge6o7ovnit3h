@@ -18,16 +18,16 @@
     <h1 id="hero-heading" class="text-white">
       {m.hero_heading_line1()}
       <br />{m.hero_heading_line2()}
-      <br /><em class="text-(--clr-accent)">{m.hero_heading_accent()}</em>
+      <br /><em class="text-(--clr-accent-2)">{m.hero_heading_accent()}</em>
     </h1>
     <p class="hero-sub">
       {m.hero_sub()}
     </p>
     <div class="hero-actions">
-      <a href="#services" class="btn-primary">{m.hero_cta_primary()}</a>
+      <a href="#services" class="btn-primary !text-black">{m.hero_cta_primary()}</a>
       <a href="#contacts" class="btn-outline">{m.hero_cta_secondary()}</a>
     </div>
-    <dl class="hero-stats" aria-label={m.hero_stats_aria()}>
+    <dl class="hero-stats text-(--clr-accent-2)" aria-label={m.hero_stats_aria()}>
       <div><dt>{m.hero_stat1_value()}</dt><dd>{m.hero_stat1_label()}</dd></div>
       <div><dt>{m.hero_stat2_value()}</dt><dd>{m.hero_stat2_label()}</dd></div>
       <div><dt>{m.hero_stat3_value()}</dt><dd>{m.hero_stat3_label()}</dd></div>
@@ -159,17 +159,6 @@
     text-transform: uppercase;
     transition: var(--transition);
     cursor: pointer;
-  }
-
-  .btn-primary {
-    background: var(--clr-accent);
-    color: #0e0f0c;
-    border: 2px solid transparent;
-  }
-
-  .btn-primary:hover {
-    background: #cfe84e;
-    transform: translateY(-2px);
   }
 
   .btn-outline {
