@@ -36,24 +36,24 @@
   }
 </script>
 
-<header class:scrolled>
-  <div class="container header-inner">
-    <a href="/" class="logo" aria-label={m.nav_logo_aria()}>
-      <span class="logo-mark">⬡</span>
-      <span class="logo-text text-white">{m.company_name()}</span>
+<header class="header fixed top-0 left-0 right-0 z-[100] py-5 bg-transparent border-b border-transparent" class:scrolled>
+  <div class="container flex items-center justify-between gap-6">
+    <a href="/" class="flex items-center gap-2 flex-shrink-0 no-underline" aria-label={m.nav_logo_aria()}>
+      <span class="text-2xl text-[var(--clr-accent)] leading-none">⬡</span>
+      <span class="font-[family-name:var(--font-display)] text-[1.1rem] font-normal tracking-[0.04em] text-white">{m.company_name()}</span>
     </a>
 
-    <nav aria-label={m.nav_aria_label()}>
-      <ul class="nav-list" class:open={menuOpen}>
+    <nav class="flex-1 flex justify-end" aria-label={m.nav_aria_label()}>
+      <ul class="nav-list flex items-center gap-[clamp(0.5rem,2vw,1.75rem)] flex-wrap" class:open={menuOpen}>
         {#each navLinks as link}
           <li>
-            <a href="#{link.anchor}" onclick={closeMenu}>
+            <a href="#{link.anchor}" onclick={closeMenu} class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.12em] uppercase text-[rgba(232,229,220,0.75)] transition-colors hover:text-[var(--clr-accent)]">
               {link.text}
             </a>
           </li>
         {/each}
         <li>
-          <a href="#contacts" class="nav-cta" onclick={closeMenu}>{m.nav_cta()}</a>
+          <a href="#contacts" class="nav-cta bg-[var(--clr-accent)] !text-[#0e0f0c] py-2 px-4 rounded-[var(--radius)] hover:bg-[var(--clr-accent-hover)]" onclick={closeMenu}>{m.nav_cta()}</a>
         </li>
       </ul>
     </nav>
@@ -61,32 +61,29 @@
     <Controls />
 
     <button
-      class="burger"
+      class="burger hidden flex-col gap-[5px] bg-none border-none cursor-pointer p-1 flex-shrink-0 max-[680px]:flex"
       aria-label={menuOpen ? m.nav_menu_close() : m.nav_menu_open()}
       aria-expanded={menuOpen}
       onclick={toggleMenu}
-      >
-      <span></span><span></span><span></span>
+    >
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
     </button>
   </div>
 </header>
 
 <style>
-  header {
-    position: fixed;
-    inset-block-start: 0;
-    inset-inline: 0;
-    z-index: 100;
-    padding-block: 1.2rem;
-    background: transparent;
-    border-bottom: 1px solid transparent;
+  /* Header transitions */
+  .header {
     transition:
       background var(--transition),
       border-color var(--transition),
       padding var(--transition);
   }
 
-  header.scrolled {
+  /* Scrolled state */
+  .header.scrolled {
     background: rgba(14, 15, 12, 0.92);
     border-color: var(--clr-border);
     padding-block: 0.8rem;
@@ -94,97 +91,8 @@
     -webkit-backdrop-filter: blur(16px);
   }
 
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-
-  .logo-mark {
-    font-size: 1.5rem;
-    color: var(--clr-accent);
-    line-height: 1;
-  }
-
-  .logo-text {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-  }
-
-  nav {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .nav-list {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.5rem, 2vw, 1.75rem);
-    flex-wrap: wrap;
-  }
-
-  .nav-list a {
-    font-family: var(--font-display);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(232, 229, 220, 0.75);
-    transition: color var(--transition);
-  }
-
-  .nav-list a:hover {
-    color: var(--clr-accent);
-  }
-
-  .nav-cta {
-    background: var(--clr-accent-2) !important;
-    color: #0e0f0c !important;
-    padding: 0.45em 1.1em;
-    border-radius: var(--radius);
-  }
-
-  .nav-cta:hover {
-    background: var(--clr-accent-hover-2) !important;
-  }
-
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    flex-shrink: 0;
-  }
-
-  .burger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--clr-text);
-    transition: var(--transition);
-    border-radius: 2px;
-  }
-
+  /* Mobile menu */
   @media (max-width: 680px) {
-    .burger {
-      display: flex;
-    }
-
     nav {
       position: fixed;
       inset: 0;
@@ -218,6 +126,11 @@
 
     .nav-list a {
       font-size: 0.9rem;
+    }
+
+    .nav-list.open {
+      transform: none;
+      pointer-events: all;
     }
   }
 </style>

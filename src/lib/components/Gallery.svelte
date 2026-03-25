@@ -31,40 +31,27 @@
   });
 </script>
 
-<section id="gallery" class="section gallery" aria-labelledby="gallery-heading">
+<section id="gallery" class="section bg-[var(--clr-surface)]" aria-labelledby="gallery-heading">
   <div class="container">
-    <header class="section-header reveal">
+    <header class="text-center mb-[clamp(2.5rem,5vw,4rem)] reveal">
       <p class="eyebrow">{m.gallery_eyebrow()}</p>
       <h2 id="gallery-heading">{m.gallery_heading()}</h2>
     </header>
   </div>
 
-  <div class="gallery-strip" role="list" aria-label={m.gallery_aria()}>
+  <div class="gallery-strip flex overflow-x-auto gap-4 px-[clamp(1rem,4vw,calc((100vw-var(--max-w))/2+2.5rem))] pb-3" role="list" aria-label={m.gallery_aria()}>
     {#each gallery as item, i}
-      <figure class="gallery-item reveal" style="--delay:{i * 60}ms" role="listitem">
-        <img src={item.src} alt={item.label} loading="lazy" width="800" height="600" />
-        <figcaption>{item.label}</figcaption>
+      <figure class="gallery-item flex-[0_0_clamp(260px,35vw,480px)] aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden relative cursor-pointer m-0 reveal" style="--delay:{i * 60}ms" role="listitem">
+        <img src={item.src} alt={item.label} loading="lazy" width="800" height="600" class="w-full h-full object-cover" />
+        <figcaption class="gallery-caption absolute bottom-0 inset-x-0 bg-gradient-to-t from-[rgba(14,15,12,0.85)] to-transparent text-[var(--clr-text)] pt-6 pb-3 px-4 font-[family-name:var(--font-display)] text-[0.7rem] font-bold tracking-[0.1em] uppercase opacity-0">{item.label}</figcaption>
       </figure>
     {/each}
   </div>
 </section>
 
 <style>
-  .gallery {
-    background: var(--clr-surface);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
+  /* Custom scrollbar styling */
   .gallery-strip {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-inline: clamp(1rem, 4vw, calc((100vw - var(--max-w)) / 2 + 2.5rem));
-    padding-bottom: 0.75rem;
     scrollbar-width: thin;
     scrollbar-color: var(--clr-accent) transparent;
   }
@@ -82,20 +69,8 @@
     border-radius: 2px;
   }
 
-  .gallery-item {
-    flex: 0 0 clamp(260px, 35vw, 480px);
-    aspect-ratio: 4 / 3;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    margin: 0;
-  }
-
+  /* Image zoom on hover */
   .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.5s ease;
   }
 
@@ -103,23 +78,12 @@
     transform: scale(1.07);
   }
 
-  .gallery-item figcaption {
-    position: absolute;
-    bottom: 0;
-    inset-inline: 0;
-    background: linear-gradient(transparent, rgba(14, 15, 12, 0.85));
-    color: var(--clr-text);
-    padding: 1.5rem 1rem 0.75rem;
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0;
+  /* Caption fade on hover */
+  .gallery-caption {
     transition: opacity var(--transition);
   }
 
-  .gallery-item:hover figcaption {
+  .gallery-item:hover .gallery-caption {
     opacity: 1;
   }
 </style>

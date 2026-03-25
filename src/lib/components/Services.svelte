@@ -32,23 +32,23 @@
   });
 </script>
 
-<section id="services" class="section services" aria-labelledby="services-heading">
+<section id="services" class="section bg-[var(--clr-surface)]" aria-labelledby="services-heading">
   <div class="container">
-    <header class="section-header reveal">
+    <header class="text-center mb-[clamp(2.5rem,5vw,4rem)] reveal">
       <p class="eyebrow">{m.services_eyebrow()}</p>
       <h2 id="services-heading">{m.services_heading()}</h2>
-      <p class="section-lead">
+      <p class="text-[var(--clr-muted)] max-w-[52ch] mx-auto mt-3">
         {m.services_lead()}
       </p>
     </header>
 
-    <ul class="services-grid" role="list">
+    <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(320px,100%),1fr))] gap-[var(--gap)]" role="list">
       {#each services as svc, i}
-        <li class="service-card reveal" style="--delay:{i * 80}ms">
-          <span class="service-icon" aria-hidden="true">{svc.icon}</span>
+        <li class="service-card relative bg-[var(--clr-surface2)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-8 overflow-hidden reveal" style="--delay:{i * 80}ms">
+          <span class="text-[2.2rem] leading-none block mb-4 grayscale-[0.3]" aria-hidden="true">{svc.icon}</span>
           <h3>{svc.title}</h3>
-          <p>{svc.desc}</p>
-          <span class="service-num" aria-hidden="true">0{i + 1}</span>
+          <p class="text-[var(--clr-muted)] text-[0.9rem] leading-[1.65]">{svc.desc}</p>
+          <span class="absolute bottom-5 right-6 font-[family-name:var(--font-display)] text-[3.5rem] font-black text-[rgba(255,255,255,0.03)] leading-none pointer-events-none select-none" aria-hidden="true">0{i + 1}</span>
         </li>
       {/each}
     </ul>
@@ -56,38 +56,11 @@
 </section>
 
 <style>
-  .services {
-    background: var(--clr-surface);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .section-lead {
-    color: var(--clr-muted);
-    max-width: 52ch;
-    margin-inline: auto;
-    margin-top: 0.75rem;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
-    gap: var(--gap);
-  }
-
+  /* Card hover effects */
   .service-card {
-    position: relative;
-    background: var(--clr-surface2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
     transition:
       border-color var(--transition),
       transform var(--transition);
-    overflow: hidden;
   }
 
   .service-card:hover {
@@ -95,38 +68,12 @@
     transform: translateY(-4px);
   }
 
+  /* Card gradient overlay */
   .service-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, rgba(184, 212, 68, 0.04), transparent);
     pointer-events: none;
-  }
-
-  .service-icon {
-    font-size: 2.2rem;
-    line-height: 1;
-    display: block;
-    margin-bottom: 1rem;
-    filter: grayscale(0.3);
-  }
-
-  .service-card p {
-    color: var(--clr-muted);
-    font-size: 0.9rem;
-    line-height: 1.65;
-  }
-
-  .service-num {
-    position: absolute;
-    bottom: 1.25rem;
-    right: 1.5rem;
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
   }
 </style>

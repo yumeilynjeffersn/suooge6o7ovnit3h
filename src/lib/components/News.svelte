@@ -49,18 +49,18 @@
   });
 </script>
 
-<section id="news" class="section news" aria-labelledby="news-heading">
+<section id="news" class="section bg-[var(--clr-bg)]" aria-labelledby="news-heading">
   <div class="container">
-    <header class="section-header reveal">
+    <header class="text-center mb-[clamp(2.5rem,5vw,4rem)] reveal">
       <p class="eyebrow">{m.news_eyebrow()}</p>
       <h2 id="news-heading">{m.news_heading()}</h2>
     </header>
 
-    <ul class="news-grid" role="list">
+    <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(340px,100%),1fr))] gap-[var(--gap)]" role="list">
       {#each news as article, i}
-        <li class="news-card reveal" style="--delay:{i * 100}ms">
-          <a href="/blog/post-{i + 1}" class="news-card-inner">
-            <figure class="news-img-wrap">
+        <li class="reveal" style="--delay:{i * 100}ms">
+          <a href="/blog/post-{i + 1}" class="news-card-inner flex flex-col h-full bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] overflow-hidden">
+            <figure class="news-img-wrap relative aspect-[3/2] overflow-hidden m-0">
               <img
                 src={article.img}
                 alt={article.title}
@@ -68,49 +68,28 @@
                 width="600"
                 height="400"
               />
-              <figcaption class="news-category">{article.category}</figcaption>
+              <figcaption class="absolute top-4 left-4 bg-[var(--clr-accent)] text-[#0e0f0c] font-[family-name:var(--font-display)] text-[0.6rem] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-sm">{article.category}</figcaption>
             </figure>
-            <div class="news-body">
-              <time datetime="2026">{article.date}</time>
+            <div class="p-6 flex flex-col gap-2 flex-1">
+              <time class="text-xs text-[var(--clr-muted)] tracking-[0.05em]" datetime="2026">{article.date}</time>
               <h3>{article.title}</h3>
-              <p>{article.excerpt}</p>
-              <span class="read-more">{m.news_read_more()}</span>
+              <p class="text-[var(--clr-muted)] text-[0.88rem] flex-1">{article.excerpt}</p>
+              <span class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.08em] uppercase text-[var(--clr-accent)] mt-2">{m.news_read_more()}</span>
             </div>
           </a>
         </li>
       {/each}
     </ul>
 
-    <div class="section-cta reveal">
+    <div class="text-center mt-12 reveal">
       <a href="/blog" class="btn-outline">{m.news_all_posts()}</a>
     </div>
   </div>
 </section>
 
 <style>
-  .news {
-    background: var(--clr-bg);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
-    gap: var(--gap);
-  }
-
+  /* Card hover effects */
   .news-card-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
     transition:
       border-color var(--transition),
       transform var(--transition);
@@ -121,13 +100,7 @@
     transform: translateY(-4px);
   }
 
-  .news-img-wrap {
-    position: relative;
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    margin: 0;
-  }
-
+  /* Image zoom on hover */
   .news-img-wrap img {
     width: 100%;
     height: 100%;
@@ -139,50 +112,7 @@
     transform: scale(1.06);
   }
 
-  .news-category {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--clr-accent);
-    color: #0e0f0c;
-    font-family: var(--font-display);
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3em 0.75em;
-    border-radius: 2px;
-  }
-
-  .news-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex: 1;
-  }
-
-  .news-body time {
-    font-size: 0.75rem;
-    color: var(--clr-muted);
-    letter-spacing: 0.05em;
-  }
-
-  .news-body p {
-    color: var(--clr-muted);
-    font-size: 0.88rem;
-    flex: 1;
-  }
-
-  .read-more {
-    font-family: var(--font-display);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--clr-accent);
-    margin-top: 0.5rem;
-  }
+  /* Remove all moved to Tailwind */
 
   .btn-outline {
     display: inline-flex;
@@ -206,8 +136,5 @@
     transform: translateY(-2px);
   }
 
-  .section-cta {
-    text-align: center;
-    margin-top: 3rem;
-  }
+  /* Removed - moved to Tailwind */
 </style>

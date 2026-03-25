@@ -32,24 +32,24 @@
 
 <section id="team" class="section team bg-(--clr-bg)" aria-labelledby="team-heading">
   <div class="container">
-    <header style="margin-bottom: clamp(2.5rem, 5vw, 4rem)" class="reveal text-center">
+    <header class="text-center mb-[clamp(2.5rem,5vw,4rem)] reveal">
       <p class="eyebrow">{m.team_eyebrow()}</p>
       <h2 id="team-heading">{m.team_heading()}</h2>
-      <p style="margin-inline: auto" class="text-[var(--clr-muted)] max-w-[52ch] mx-auto !mt-4">
+      <p class="text-[var(--clr-muted)] max-w-[52ch] mx-auto mt-3">
         {m.team_lead()}
       </p>
     </header>
 
-    <ul class="team-grid" role="list">
+    <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-[var(--gap)]" role="list">
       {#each team as member, i}
-        <li class="team-card reveal" style="--delay:{i * 90}ms">
-          <div class="team-photo-wrap">
-            <img src={member.img} alt={member.name} loading="lazy" width="200" height="200" />
+        <li class="team-card flex flex-col items-center text-center bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-8 px-6 reveal" style="--delay:{i * 90}ms">
+          <div class="w-[100px] h-[100px] rounded-full overflow-hidden border-[3px] border-[var(--clr-accent)] mb-5 flex-shrink-0">
+            <img src={member.img} alt={member.name} loading="lazy" width="200" height="200" class="w-full h-full object-cover" />
           </div>
-          <div class="team-info">
+          <div>
             <h3>{member.name}</h3>
-            <p class="team-role font-(family-name:--font-display) text-[0.75rem] text-[var(--clr-accent)] uppercase font-bold tracking-wider !mb-3">{member.role}</p>
-            <p class="team-bio text-[var(--clr-muted)] text-sm">
+            <p class="font-[family-name:var(--font-display)] text-xs text-[var(--clr-accent)] uppercase font-bold tracking-wider mb-3">{member.role}</p>
+            <p class="text-[var(--clr-muted)] text-sm">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore.
             </p>
@@ -61,20 +61,8 @@
 </section>
 
 <style>
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
-    gap: var(--gap);
-  }
+  /* Card hover effects */
   .team-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem 1.5rem;
     transition:
       border-color var(--transition),
       transform var(--transition);
@@ -83,18 +71,5 @@
     border-color: var(--clr-accent);
     transform: translateY(-4px);
   }
-  .team-photo-wrap {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--clr-accent);
-    margin-bottom: 1.25rem;
-    flex-shrink: 0;
-  }
-  .team-photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  /* Removed - moved to Tailwind */
 </style>

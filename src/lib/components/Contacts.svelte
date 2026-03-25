@@ -17,38 +17,64 @@
   });
 </script>
 
-<section id="contacts" class="section contacts relative" aria-labelledby="contacts-heading">
-  <div class="container contacts-inner">
-    <div class="contacts-info reveal">
+<section
+  id="contacts"
+  class="section contacts relative bg-[var(--clr-surface)] overflow-hidden"
+  aria-labelledby="contacts-heading"
+>
+  <div
+    class="container grid grid-cols-2 gap-[clamp(2rem,6vw,5rem)] items-start max-[900px]:grid-cols-1"
+  >
+    <div class="reveal">
       <p class="eyebrow">{m.contacts_eyebrow()}</p>
-      <h2 class="!mb-8" id="contacts-heading">{m.contacts_heading()}</h2>
+      <h2 class="mb-8" id="contacts-heading">{m.contacts_heading()}</h2>
       <address>
-        <ul class="contacts-list" role="list">
-          <li>
-            <span class="c-icon" aria-hidden="true">📍</span>
+        <ul class="flex flex-col gap-5" role="list">
+          <li class="flex items-start gap-4">
+            <span class="text-[1.3rem] flex-shrink-0 mt-0.5" aria-hidden="true">📍</span>
             <div>
-              <strong>{m.contacts_address_label()}</strong>
+              <strong
+                class="block font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-accent)] mb-1"
+                >{m.contacts_address_label()}</strong
+              >
               <span>{m.contacts_address_value()}</span>
             </div>
           </li>
-          <li>
-            <span class="c-icon" aria-hidden="true">📞</span>
+          <li class="flex items-start gap-4">
+            <span class="text-[1.3rem] flex-shrink-0 mt-0.5" aria-hidden="true">📞</span>
             <div>
-              <strong>{m.contacts_phone_label()}</strong>
-              <a href="tel:{m.phone_number()}">{m.phone_number()}</a>
+              <strong
+                class="block font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-accent)] mb-1"
+                >{m.contacts_phone_label()}</strong
+              >
+              <a
+                href="tel:{m.phone_number()}"
+                class="text-[var(--clr-text)] transition-colors hover:text-[var(--clr-accent)]"
+                >{m.phone_number()}</a
+              >
             </div>
           </li>
-          <li>
-            <span class="c-icon" aria-hidden="true">✉️</span>
+          <li class="flex items-start gap-4">
+            <span class="text-[1.3rem] flex-shrink-0 mt-0.5" aria-hidden="true">✉️</span>
             <div>
-              <strong>{m.contacts_email_label()}</strong>
-              <a href="mailto:{m.email_address()}">{m.email_address()}</a>
+              <strong
+                class="block font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-accent)] mb-1"
+                >{m.contacts_email_label()}</strong
+              >
+              <a
+                href="mailto:{m.email_address()}"
+                class="text-[var(--clr-text)] transition-colors hover:text-[var(--clr-accent)]"
+                >{m.email_address()}</a
+              >
             </div>
           </li>
-          <li>
-            <span class="c-icon" aria-hidden="true">🕐</span>
+          <li class="flex items-start gap-4">
+            <span class="text-[1.3rem] flex-shrink-0 mt-0.5" aria-hidden="true">🕐</span>
             <div>
-              <strong>{m.contacts_hours_label()}</strong>
+              <strong
+                class="block font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-accent)] mb-1"
+                >{m.contacts_hours_label()}</strong
+              >
               <span>{m.contacts_hours_value()}</span>
             </div>
           </li>
@@ -56,11 +82,15 @@
       </address>
     </div>
 
-    <div class="contacts-form reveal" style="--delay:100ms">
+    <div class="contacts-form bg-[var(--clr-surface2)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-[clamp(1.5rem,3vw,2.5rem)] reveal" style="--delay:100ms">
       <h3>{m.contacts_form_heading()}</h3>
       <form novalidate aria-label={m.contacts_form_aria()}>
-        <div class="field">
-          <label for="name">{m.contacts_form_name_label()}</label>
+        <div class="flex flex-col gap-2 mb-4">
+          <label
+            for="name"
+            class="font-[family-name:var(--font-display)] text-[0.62rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-muted)]"
+            >{m.contacts_form_name_label()}</label
+          >
           <input
             id="name"
             type="text"
@@ -68,10 +98,15 @@
             placeholder={m.contacts_form_name_placeholder()}
             autocomplete="name"
             required
+            class="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-[var(--radius)] px-4 py-3 text-[var(--clr-text)] font-[family-name:var(--font-body)] text-[0.95rem] font-light w-full resize-y placeholder:text-[var(--clr-muted)] focus:outline-none focus:border-[var(--clr-accent)]"
           />
         </div>
-        <div class="field">
-          <label for="phone">{m.contacts_form_phone_label()}</label>
+        <div class="flex flex-col gap-2 mb-4">
+          <label
+            for="phone"
+            class="font-[family-name:var(--font-display)] text-[0.62rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-muted)]"
+            >{m.contacts_form_phone_label()}</label
+          >
           <input
             id="phone"
             type="tel"
@@ -79,21 +114,27 @@
             placeholder={m.contacts_form_phone_placeholder()}
             autocomplete="tel"
             required
+            class="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-[var(--radius)] px-4 py-3 text-[var(--clr-text)] font-[family-name:var(--font-body)] text-[0.95rem] font-light w-full resize-y placeholder:text-[var(--clr-muted)] focus:outline-none focus:border-[var(--clr-accent)]"
           />
         </div>
-        <div class="field">
-          <label for="message">{m.contacts_form_message_label()}</label>
+        <div class="flex flex-col gap-2 mb-4">
+          <label
+            for="message"
+            class="font-[family-name:var(--font-display)] text-[0.62rem] font-bold tracking-[0.1em] uppercase text-[var(--clr-muted)]"
+            >{m.contacts_form_message_label()}</label
+          >
           <textarea
             id="message"
             name="message"
             rows="4"
             placeholder={m.contacts_form_message_placeholder()}
+            class="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-[var(--radius)] px-4 py-3 text-[var(--clr-text)] font-[family-name:var(--font-body)] text-[0.95rem] font-light w-full resize-y placeholder:text-[var(--clr-muted)] focus:outline-none focus:border-[var(--clr-accent)]"
           ></textarea>
         </div>
-        <button type="submit" class="btn-primary full">{m.contacts_form_submit()}</button>
-        <p class="form-note">
+        <button type="submit" class="btn-primary">{m.contacts_form_submit()}</button>
+        <p class="mt-3 text-xs text-[var(--clr-muted)] text-center">
           {m.contacts_form_privacy_note()}
-          <a href="/privacy">{m.contacts_form_privacy_link()}</a>.
+          <a href="/privacy" class="text-[var(--clr-accent)]">{m.contacts_form_privacy_link()}</a>.
         </p>
       </form>
     </div>
@@ -101,10 +142,7 @@
 </section>
 
 <style>
-  .contacts {
-    background: var(--clr-surface);
-    overflow: hidden;
-  }
+  /* Accent gradient overlay */
   .contacts::before {
     content: '';
     position: absolute;
@@ -115,87 +153,8 @@
     background: radial-gradient(circle, rgba(184, 212, 68, 0.06) 0%, transparent 70%);
     pointer-events: none;
   }
-  .contacts-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 6vw, 5rem);
-    align-items: start;
-  }
-  .contacts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .contacts-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .c-icon {
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-  }
-  .contacts-list strong {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--clr-accent);
-    margin-bottom: 0.2rem;
-  }
-  .contacts-list a {
-    color: var(--clr-text);
-    transition: color var(--transition);
-  }
-  .contacts-list a:hover {
-    color: var(--clr-accent);
-  }
-  .contacts-form {
-    background: var(--clr-surface2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-lg);
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-  }
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  .field label {
-    font-family: var(--font-display);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--clr-muted);
-  }
-  .field input,
-  .field textarea {
-    background: var(--clr-bg);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius);
-    padding: 0.75rem 1rem;
-    color: var(--clr-text);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 300;
-    transition: border-color var(--transition);
-    width: 100%;
-    resize: vertical;
-  }
-  .field input::placeholder,
-  .field textarea::placeholder {
-    color: var(--clr-muted);
-  }
-  .field input:focus,
-  .field textarea:focus {
-    outline: none;
-    border-color: var(--clr-accent);
-  }
+
+  /* Button styles */
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -214,22 +173,9 @@
     color: #0e0f0c;
     border: 2px solid transparent;
   }
+
   .btn-primary:hover {
     background: #cfe84e;
     transform: translateY(-2px);
-  }
-  .form-note {
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-    color: var(--clr-muted);
-    text-align: center;
-  }
-  .form-note a {
-    color: var(--clr-accent);
-  }
-  @media (max-width: 900px) {
-    .contacts-inner {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

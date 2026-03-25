@@ -2,87 +2,88 @@
   import * as m from '$lib/paraglide/messages';
 </script>
 
-<section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-overlay"></div>
+<section
+  class="relative min-h-svh flex items-end pb-[clamp(3rem,7vw,5rem)] overflow-hidden"
+  aria-labelledby="hero-heading"
+>
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="hero-overlay absolute inset-0 z-[1]"></div>
     <img
       src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=1800&q=85"
       alt=""
-      class="hero-img"
+      class="w-full h-full object-cover object-center"
       fetchpriority="high"
     />
   </div>
 
-  <div class="container hero-content">
-    <p class="hero-eyebrow">{m.hero_since()}</p>
-    <h1 id="hero-heading" class="text-white">
+  <div class="container hero-content relative z-[2] grid gap-6 max-w-[920px]">
+    <p class="hero-eyebrow mt-16 flex items-center gap-3 font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.25em] uppercase text-[var(--clr-accent)]">
+      {m.hero_since()}
+    </p>
+    <h1
+      id="hero-heading"
+      class="font-[family-name:var(--font-display)] text-[clamp(2.8rem,5vw,6.5rem)] font-black leading-none tracking-[-0.03em] text-white max-[680px]:text-[clamp(2.2rem,11vw,3.5rem)]"
+    >
       {m.hero_heading_line1()}
       <br />{m.hero_heading_line2()}
-      <br /><em class="text-(--clr-accent-2)">{m.hero_heading_accent()}</em>
+      <br /><em class="not-italic block text-[var(--clr-accent)]">{m.hero_heading_accent()}</em>
     </h1>
-    <p class="hero-sub">
+    <p class="max-w-[45ch] text-[1.05rem] leading-[1.65] text-[rgba(232,229,220,0.7)]">
       {m.hero_sub()}
     </p>
-    <div class="hero-actions">
-      <a href="#services" class="btn-primary !text-black">{m.hero_cta_primary()}</a>
+    <div class="flex gap-4 flex-wrap">
+      <a href="#services" class="btn-primary">{m.hero_cta_primary()}</a>
       <a href="#contacts" class="btn-outline">{m.hero_cta_secondary()}</a>
     </div>
-    <dl class="hero-stats text-(--clr-accent-2)" aria-label={m.hero_stats_aria()}>
-      <div><dt>{m.hero_stat1_value()}</dt><dd>{m.hero_stat1_label()}</dd></div>
-      <div><dt>{m.hero_stat2_value()}</dt><dd>{m.hero_stat2_label()}</dd></div>
-      <div><dt>{m.hero_stat3_value()}</dt><dd>{m.hero_stat3_label()}</dd></div>
+    <dl class="flex gap-10 pt-4 border-t border-[var(--clr-border)] flex-wrap" aria-label={m.hero_stats_aria()}>
+      <div class="flex flex-col">
+        <dt class="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.2rem)] font-black text-[var(--clr-accent)] leading-none">
+          {m.hero_stat1_value()}
+        </dt>
+        <dd class="text-xs text-[var(--clr-muted)] uppercase tracking-[0.08em]">
+          {m.hero_stat1_label()}
+        </dd>
+      </div>
+      <div class="flex flex-col">
+        <dt class="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.2rem)] font-black text-[var(--clr-accent)] leading-none">
+          {m.hero_stat2_value()}
+        </dt>
+        <dd class="text-xs text-[var(--clr-muted)] uppercase tracking-[0.08em]">
+          {m.hero_stat2_label()}
+        </dd>
+      </div>
+      <div class="flex flex-col">
+        <dt class="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.2rem)] font-black text-[var(--clr-accent)] leading-none">
+          {m.hero_stat3_value()}
+        </dt>
+        <dd class="text-xs text-[var(--clr-muted)] uppercase tracking-[0.08em]">
+          {m.hero_stat3_label()}
+        </dd>
+      </div>
     </dl>
   </div>
 
-  <div class="hero-scroll" aria-hidden="true">↓</div>
+  <div
+    class="hero-scroll absolute bottom-8 right-[clamp(1rem,4vw,2.5rem)] z-[2] text-2xl text-[var(--clr-accent)]"
+    aria-hidden="true"
+  >
+    ↓
+  </div>
 </section>
 
 <style>
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: clamp(3rem, 7vw, 5rem);
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-  }
-
+  /* Gradient overlay */
   .hero-overlay {
-    position: absolute;
-    inset: 0;
     background: linear-gradient(
       117deg,
       rgba(14, 15, 12, 0.9) 0%,
       rgba(14, 15, 12, 0.65) 55%,
       rgba(14, 15, 12, 0.4) 50%
     );
-    /* background: linear-gradient(
-      120deg,
-      rgba(14, 15, 12, 0.9) 0%,
-      rgba(14, 15, 12, 0.65) 55%,
-      rgba(14, 15, 12, 0.4) 100%
-    ); */
-    z-index: 1;
   }
 
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
+  /* Hero content animation */
   .hero-content {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    gap: 1.5rem;
-    max-width: 920px;
     animation: heroIn 1s ease 0.2s both;
   }
 
@@ -97,19 +98,7 @@
     }
   }
 
-  .hero-eyebrow {
-    margin-top: 64px;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: var(--font-display);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--clr-accent);
-  }
-
+  /* Eyebrow line */
   .hero-eyebrow::before {
     content: '';
     display: inline-block;
@@ -118,34 +107,7 @@
     background: var(--clr-accent);
   }
 
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5vw, 6.5rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  h1 em {
-    font-style: normal;
-    display: block;
-    /*color: var(--clr-accent);*/
-  }
-
-  .hero-sub {
-    color: rgba(232, 229, 220, 0.7);
-    max-width: 45ch;
-    font-size: 1.05rem;
-    line-height: 1.65;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  /* Local btn overrides so Hero works standalone */
+  /* Button styles (local to Hero for standalone use) */
   .btn-primary,
   .btn-outline {
     display: inline-flex;
@@ -161,6 +123,17 @@
     cursor: pointer;
   }
 
+  .btn-primary {
+    background: var(--clr-accent);
+    color: #0e0f0c;
+    border: 2px solid transparent;
+  }
+
+  .btn-primary:hover {
+    background: #cfe84e;
+    transform: translateY(-2px);
+  }
+
   .btn-outline {
     background: transparent;
     color: var(--clr-text);
@@ -173,41 +146,8 @@
     transform: translateY(-2px);
   }
 
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--clr-border);
-    flex-wrap: wrap;
-  }
-
-  .hero-stats > div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-stats dt {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 900;
-    color: var(--clr-accent);
-    line-height: 1;
-  }
-
-  .hero-stats dd {
-    font-size: 0.75rem;
-    color: var(--clr-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
+  /* Scroll indicator animation */
   .hero-scroll {
-    position: absolute;
-    bottom: 2rem;
-    right: clamp(1rem, 4vw, 2.5rem);
-    z-index: 2;
-    font-size: 1.5rem;
-    color: var(--clr-accent);
     animation: bounce 2s ease infinite;
   }
 
@@ -218,12 +158,6 @@
     }
     50% {
       transform: translateY(8px);
-    }
-  }
-
-  @media (max-width: 680px) {
-    h1 {
-      font-size: clamp(2.2rem, 11vw, 3.5rem);
     }
   }
 </style>
