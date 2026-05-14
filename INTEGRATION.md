@@ -45,11 +45,11 @@
 import { theme } from '$lib/stores/theme.svelte';
 
 // Установить тему
-theme.setMode('light');  // 'system' | 'light' | 'dark'
+theme.setMode('light'); // 'system' | 'light' | 'dark'
 
 // Проверить текущую тему
-theme.mode      // 'system' | 'light' | 'dark'
-theme.isDark    // boolean - разрешённое значение
+theme.mode; // 'system' | 'light' | 'dark'
+theme.isDark; // boolean - разрешённое значение
 ```
 
 ### Переключение языка
@@ -59,13 +59,15 @@ import * as m from '$lib/paraglide/messages';
 import { setLocale, getLocale } from '$lib/paraglide/runtime';
 
 // Установить язык
-setLocale('ru');  // 'en' | 'ru'
+setLocale('ru'); // 'en' | 'ru'
 
 // Получить текущий язык
-getLocale();  // 'en' | 'ru'
+getLocale(); // 'en' | 'ru'
 
 // Использовать переводы
-{m.nav_services()}  // "Услуги" или "Services"
+{
+	m.nav_services();
+} // "Услуги" или "Services"
 ```
 
 ## ✅ Все компоненты обновлены!

@@ -5,6 +5,7 @@
 ### Node.js и пnpm
 
 Проект требует:
+
 - **Node.js**: >= 22.13 (рекомендуется 22.22.2)
 - **pnpm**: 10.32.1
 
@@ -78,13 +79,13 @@ pnpm run preview
 
 ```js
 prerender: {
-  handleHttpError: ({ path, referrer, message }) => {
-    // Игнорируем 404 для несуществующих страниц
-    if (path.startsWith('/blog') || path === '/privacy') {
-      return;
-    }
-    throw new Error(message);
-  }
+	handleHttpError: ({ path, referrer, message }) => {
+		// Игнорируем 404 для несуществующих страниц
+		if (path.startsWith('/blog') || path === '/privacy') {
+			return;
+		}
+		throw new Error(message);
+	};
 }
 ```
 
@@ -93,6 +94,7 @@ prerender: {
 В статическом билде **переключение языка требует перезагрузки страницы**.
 
 Это нормальное поведение Paraglide в режиме `adapter-static`, так как:
+
 - Каждая локаль генерируется как отдельная HTML-страница
 - Смена языка меняет localStorage и триггерит перезагрузку
 - Header обновляется реактивно благодаря `$derived`
@@ -130,11 +132,11 @@ server {
   listen 80;
   server_name example.com;
   root /var/www/app/build;
-  
+
   location / {
     try_files $uri $uri.html $uri/ =404;
   }
-  
+
   # Кэширование статики
   location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
     expires 1y;
