@@ -122,20 +122,12 @@
 	/* Theme switching optimized: 270ms ease-in-out for smooth color transitions */
 	--transition-base-duration: 270ms;
 	--transition-base-timing: ease-in-out;
-
-	/* Animate CSS custom properties for smooth theme switching */
-	transition-property:
-		--clr-bg, --clr-surface, --clr-surface2, --clr-text, --clr-muted, --clr-border, --clr-nav-link,
-		--clr-footer-link, --clr-hero-sub;
-	transition-duration: var(--transition-base-duration);
-	transition-timing-function: var(--transition-base-timing);
 }
 
 @media (prefers-reduced-motion: reduce) {
 	:root {
 		--transition-base-duration: 0ms;
 		--transition-base-timing: linear;
-		transition-duration: 0ms; /* Disable @property transitions */
 	}
 }
 
@@ -181,7 +173,7 @@ body {
 }
 
 /* ── CENTRALIZED THEME TRANSITIONS ── */
-/* Structural elements */
+/* Structural elements: background, text color, borders */
 body,
 section,
 header,
@@ -192,6 +184,28 @@ article,
 aside,
 nav {
 	transition-property: background-color, color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+/* Text elements: color only (no background/border to animate) */
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+dt,
+dd,
+address,
+blockquote,
+label,
+caption,
+figcaption {
+	transition-property: color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
 }
