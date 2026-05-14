@@ -28,3 +28,5 @@ src/lib/paraglide
 project.inlang/cache/
 
 /static/
+!static/favicon.svg
+!static/robots.txt
