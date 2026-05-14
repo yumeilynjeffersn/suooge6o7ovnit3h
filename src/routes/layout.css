@@ -4,6 +4,54 @@
 }
 @plugin '@tailwindcss/typography';
 
+/* ── CSS CUSTOM PROPERTIES REGISTRATION ── */
+/* Register color variables as animatable properties */
+@property --clr-bg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #0e0f0c;
+}
+@property --clr-surface {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #161810;
+}
+@property --clr-surface2 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #1e2118;
+}
+@property --clr-text {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #e8e5dc;
+}
+@property --clr-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #8a8a7a;
+}
+@property --clr-border {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgba(255, 255, 255, 0.08);
+}
+@property --clr-nav-link {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgba(232, 229, 220, 0.75);
+}
+@property --clr-footer-link {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgba(232, 229, 220, 0.65);
+}
+@property --clr-hero-sub {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgba(232, 229, 220, 0.7);
+}
+
 /* Custom utility for consistent transition timing */
 @utility transition-base {
 	transition-duration: 270ms;
@@ -74,12 +122,20 @@
 	/* Theme switching optimized: 270ms ease-in-out for smooth color transitions */
 	--transition-base-duration: 270ms;
 	--transition-base-timing: ease-in-out;
+
+	/* Animate CSS custom properties for smooth theme switching */
+	transition-property:
+		--clr-bg, --clr-surface, --clr-surface2, --clr-text, --clr-muted, --clr-border, --clr-nav-link,
+		--clr-footer-link, --clr-hero-sub;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
 }
 
 @media (prefers-reduced-motion: reduce) {
 	:root {
 		--transition-base-duration: 0ms;
 		--transition-base-timing: linear;
+		transition-duration: 0ms; /* Disable @property transitions */
 	}
 }
 
@@ -125,7 +181,7 @@ body {
 }
 
 /* ── CENTRALIZED THEME TRANSITIONS ── */
-/* Structural elements and text elements */
+/* Structural elements */
 body,
 section,
 header,
@@ -134,19 +190,7 @@ main,
 div,
 article,
 aside,
-nav,
-p,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-dt,
-dd,
-address {
+nav {
 	transition-property: background-color, color, border-color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
