@@ -63,17 +63,15 @@
 						<a
 							href="#{link.anchor}"
 							onclick={closeMenu}
-							class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.12em] text-[rgba(232,229,220,0.75)] uppercase transition-colors transition-base hover:text-[var(--clr-accent)]"
+							class="nav-link font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.12em] uppercase"
 						>
 							{link.text}
 						</a>
 					</li>
 				{/each}
 				<li>
-					<a
-						href="#contacts"
-						class="nav-cta rounded-[var(--radius)] bg-[var(--clr-accent)] px-4 py-2 !text-[#0e0f0c] hover:bg-[var(--clr-accent-hover)]"
-						onclick={closeMenu}>{m.nav_cta()}</a
+					<a href="#contacts" class="nav-cta rounded-[var(--radius)] px-4 py-2" onclick={closeMenu}
+						>{m.nav_cta()}</a
 					>
 				</li>
 			</ul>
@@ -103,6 +101,31 @@
 		transition-property: background-color, border-color, padding;
 		transition-duration: var(--transition-base-duration);
 		transition-timing-function: var(--transition-base-timing);
+	}
+
+	/* Navigation links */
+	.nav-link {
+		color: var(--clr-nav-link);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
+	}
+
+	.nav-link:hover {
+		color: var(--clr-accent);
+	}
+
+	/* CTA button */
+	.nav-cta {
+		background: var(--clr-accent);
+		color: var(--clr-accent-fg);
+		transition-property: background-color, color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
+	}
+
+	.nav-cta:hover {
+		background: var(--clr-accent-hover);
 	}
 
 	/* Scrolled state */

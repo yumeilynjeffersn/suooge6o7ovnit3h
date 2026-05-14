@@ -40,11 +40,7 @@
 			<ul class="flex flex-col gap-2" role="list">
 				{#each navLinks as link}
 					<li>
-						<a
-							href="#{link.anchor}"
-							class="text-[0.9rem] text-[rgba(232,229,220,0.65)] transition-colors transition-base hover:text-[var(--clr-accent)]"
-							>{link.text}</a
-						>
+						<a href="#{link.anchor}" class="footer-link text-[0.9rem]">{link.text}</a>
 					</li>
 				{/each}
 			</ul>
@@ -57,20 +53,12 @@
 				{m.footer_contacts_heading()}
 			</h4>
 			<address>
-				<p class="mb-1.5 text-[0.9rem] text-[rgba(232,229,220,0.65)]">{m.footer_address()}</p>
-				<p class="mb-1.5 text-[0.9rem] text-[rgba(232,229,220,0.65)]">
-					<a
-						href="tel:{m.phone_number()}"
-						class="transition-colors transition-base hover:text-[var(--clr-accent)]"
-						>{m.phone_number()}</a
-					>
+				<p class="contact-text mb-1.5 text-[0.9rem]">{m.footer_address()}</p>
+				<p class="contact-text mb-1.5 text-[0.9rem]">
+					<a href="tel:{m.phone_number()}" class="footer-link">{m.phone_number()}</a>
 				</p>
-				<p class="mb-1.5 text-[0.9rem] text-[rgba(232,229,220,0.65)]">
-					<a
-						href="mailto:{m.email_address()}"
-						class="transition-colors transition-base hover:text-[var(--clr-accent)]"
-						>{m.email_address()}</a
-					>
+				<p class="contact-text mb-1.5 text-[0.9rem]">
+					<a href="mailto:{m.email_address()}" class="footer-link">{m.email_address()}</a>
 				</p>
 			</address>
 		</div>
@@ -80,9 +68,7 @@
 		<div class="container flex flex-wrap items-center justify-between gap-2">
 			<p class="text-[0.78rem] text-[var(--clr-muted)]">{m.footer_copyright()}</p>
 			<p class="text-[0.78rem] text-[var(--clr-muted)]">
-				<a href="/privacy" class="transition-colors transition-base hover:text-[var(--clr-accent)]"
-					>{m.footer_privacy()}</a
-				>
+				<a href="/privacy" class="footer-link">{m.footer_privacy()}</a>
 			</p>
 		</div>
 	</div>
@@ -102,5 +88,25 @@
 		font-weight: 400;
 		letter-spacing: 0.04em;
 		color: var(--clr-text);
+	}
+
+	/* Footer links */
+	.footer-link {
+		color: var(--clr-footer-link);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
+	}
+
+	.footer-link:hover {
+		color: var(--clr-accent);
+	}
+
+	/* Contact text */
+	.contact-text {
+		color: var(--clr-footer-link);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
 	}
 </style>

@@ -17,8 +17,6 @@
 	--gap: clamp(1rem, 3vw, 2rem);
 	--section-py: clamp(4rem, 8vw, 7rem);
 	--max-w: 1200px;
-	/* Deprecated: use --transition-base from layout.css instead */
-	--transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body *,

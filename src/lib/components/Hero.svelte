@@ -30,7 +30,7 @@
 			<br />{m.hero_heading_line2()}
 			<br /><em class="block text-[var(--clr-accent)] not-italic">{m.hero_heading_accent()}</em>
 		</h1>
-		<p class="max-w-[45ch] text-[1.05rem] leading-[1.65] text-[rgba(232,229,220,0.7)]">
+		<p class="hero-subtitle max-w-[45ch] text-[1.05rem] leading-[1.65]">
 			{m.hero_sub()}
 		</p>
 		<div class="flex flex-wrap gap-4">
@@ -91,6 +91,14 @@
 			rgba(14, 15, 12, 0.65) 55%,
 			rgba(14, 15, 12, 0.4) 50%
 		);
+	}
+
+	/* Hero subtitle */
+	.hero-subtitle {
+		color: var(--clr-hero-sub);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
 	}
 
 	/* Hero content animation */
