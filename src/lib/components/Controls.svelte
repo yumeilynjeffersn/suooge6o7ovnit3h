@@ -29,14 +29,21 @@
 </script>
 
 <div class="controls" role="group" aria-label={m.controls_theme_aria()}>
-  <!-- Theme toggle button -->
+  <!-- Theme toggle switch -->
   <button
     class="theme-toggle"
+    class:dark={theme.isDark}
     onclick={toggleTheme}
     title={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
     aria-label={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
+    aria-pressed={theme.isDark}
+    role="switch"
   >
-    <span aria-hidden="true">{theme.isDark ? '☀' : '☾'}</span>
+    <span class="toggle-track">
+      <span class="toggle-thumb">
+        <span class="toggle-icon" aria-hidden="true">{theme.isDark ? '☾' : '☀'}</span>
+      </span>
+    </span>
   </button>
 
   <div class="divider" aria-hidden="true"></div>
@@ -71,22 +78,67 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 26px;
     border: none;
-    border-radius: var(--radius);
     background: transparent;
-    color: var(--clr-accent);
-    font-size: 1rem;
     cursor: pointer;
-    transition:
-      transform var(--transition),
-      color var(--transition);
-    line-height: 1;
+    padding: 0;
+    width: 52px;
+    height: 26px;
   }
 
-  .theme-toggle:hover {
-    transform: scale(1.1);
+  .toggle-track {
+    position: relative;
+    display: block;
+    width: 48px;
+    height: 24px;
+    background: var(--clr-border);
+    border-radius: 12px;
+    transition: background var(--transition);
+  }
+
+  .theme-toggle:hover .toggle-track {
+    background: var(--clr-muted);
+  }
+
+  .theme-toggle.dark .toggle-track {
+    background: var(--clr-accent);
+  }
+
+  .theme-toggle.dark:hover .toggle-track {
+    background: var(--clr-accent-hover);
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: var(--clr-surface);
+    border-radius: 50%;
+    transition:
+      transform var(--transition),
+      background var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .theme-toggle.dark .toggle-thumb {
+    transform: translateX(24px);
+    background: var(--clr-accent-fg);
+  }
+
+  .toggle-icon {
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--clr-muted);
+    transition: color var(--transition);
+  }
+
+  .theme-toggle.dark .toggle-icon {
+    color: var(--clr-accent);
   }
 
   .segment {
