@@ -8,8 +8,8 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
-				// Ignore 404s for /blog and /privacy links that don't exist yet
-				if (path.startsWith('/blog') || path === '/privacy') {
+				// Ignore 404s for /blog, /catalog and /privacy links that don't exist yet
+				if (path.startsWith('/blog') || path.startsWith('/catalog') || path === '/privacy') {
 					return;
 				}
 				throw new Error(message);
