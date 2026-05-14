@@ -93,20 +93,17 @@
 	/* Footer links */
 	.footer-link {
 		color: var(--clr-footer-link);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	.footer-link:hover {
 		color: var(--clr-accent);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
 	}
 
 	/* Contact text */
 	.contact-text {
 		color: var(--clr-footer-link);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 </style>

@@ -267,17 +267,8 @@
 		transform: scale(1.1);
 	}
 
-	.service-title {
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
-	}
-
 	.service-card:hover .service-title {
 		color: var(--clr-accent);
-	}
-
-	.subcat-title {
 		transition-property: color;
 		transition-duration: var(--transition-base-duration);
 		transition-timing-function: var(--transition-base-timing);

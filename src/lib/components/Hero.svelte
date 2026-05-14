@@ -96,9 +96,6 @@
 	/* Hero subtitle */
 	.hero-subtitle {
 		color: var(--clr-hero-sub);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	/* Hero content animation */

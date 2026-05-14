@@ -130,13 +130,13 @@
 		font-size: 0.75rem;
 		line-height: 1;
 		color: var(--clr-muted);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	.theme-toggle.dark .toggle-icon {
 		color: var(--clr-accent);
+		transition-property: color;
+		transition-duration: var(--transition-base-duration);
+		transition-timing-function: var(--transition-base-timing);
 	}
 
 	.segment {
