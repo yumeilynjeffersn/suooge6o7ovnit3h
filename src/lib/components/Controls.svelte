@@ -1,24 +1,26 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { theme } from '$lib/stores/theme.svelte';
   import { setLocale, getLocale } from '$lib/paraglide/runtime';
   import * as m from '$lib/paraglide/messages';
 
   type Locale = 'en' | 'ru';
 
-  const themeOptions: Array<{ value: 'system' | 'light' | 'dark'; icon: string }> = [
-    { value: 'system', icon: '⬡' },
-    { value: 'light', icon: '☀' },
-    { value: 'dark', icon: '☾' },
-  ];
-
-  const themeLabels = $derived({
-    system: m.controls_theme_system(),
-    light: m.controls_theme_light(),
-    dark: m.controls_theme_dark(),
-  });
-
   const langOptions: Locale[] = ['ru', 'en'];
   let currentLocale = $state<Locale>(getLocale() as Locale);
+
+  // Convert 'system' to concrete theme on mount
+  onMount(() => {
+    if (theme.mode === 'system') {
+      theme.setMode(theme.isDark ? 'dark' : 'light');
+    }
+  });
+
+  // Toggle between light and dark
+  function toggleTheme() {
+    const nextTheme = theme.isDark ? 'light' : 'dark';
+    theme.setMode(nextTheme);
+  }
 
   function handleLocaleChange(locale: Locale) {
     setLocale(locale);
@@ -27,21 +29,15 @@
 </script>
 
 <div class="controls" role="group" aria-label={m.controls_theme_aria()}>
-  <!-- Theme switcher -->
-  <div class="segment" aria-label={m.controls_theme_aria()}>
-    {#each themeOptions as opt}
-      <button
-        class="seg-btn"
-        class:active={theme.mode === opt.value}
-        onclick={() => theme.setMode(opt.value)}
-        title={themeLabels[opt.value]}
-        aria-pressed={theme.mode === opt.value}
-      >
-        <span aria-hidden="true">{opt.icon}</span>
-        <span class="sr-only">{themeLabels[opt.value]}</span>
-      </button>
-    {/each}
-  </div>
+  <!-- Theme toggle button -->
+  <button
+    class="theme-toggle"
+    onclick={toggleTheme}
+    title={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
+    aria-label={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
+  >
+    <span aria-hidden="true">{theme.isDark ? '☀' : '☾'}</span>
+  </button>
 
   <div class="divider" aria-hidden="true"></div>
 
@@ -69,6 +65,28 @@
     border: 1px solid var(--clr-border);
     border-radius: calc(var(--radius) + 4px);
     padding: 3px;
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 26px;
+    border: none;
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--clr-accent);
+    font-size: 1rem;
+    cursor: pointer;
+    transition:
+      transform var(--transition),
+      color var(--transition);
+    line-height: 1;
+  }
+
+  .theme-toggle:hover {
+    transform: scale(1.1);
   }
 
   .segment {
@@ -119,18 +137,5 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     width: 30px;
-  }
-
-  /* Visually hidden but accessible */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
   }
 </style>
