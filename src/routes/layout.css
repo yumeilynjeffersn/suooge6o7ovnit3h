@@ -125,7 +125,7 @@ body {
 }
 
 /* ── CENTRALIZED THEME TRANSITIONS ── */
-/* Structural elements */
+/* Structural elements and text elements */
 body,
 section,
 header,
@@ -134,7 +134,19 @@ main,
 div,
 article,
 aside,
-nav {
+nav,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+dt,
+dd,
+address {
 	transition-property: background-color, color, border-color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
