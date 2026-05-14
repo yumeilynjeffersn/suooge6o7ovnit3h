@@ -173,13 +173,27 @@ body {
 }
 
 /* ── CENTRALIZED THEME TRANSITIONS ── */
-/* Global tag-level rules for elements that always carry theme colors */
-body {
-	transition-property: background-color, color;
+
+/* Semantic containers - all carry theme backgrounds/borders */
+body,
+header,
+footer,
+main,
+section,
+nav,
+aside,
+article {
+	transition-property: background-color, border-color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
 }
 
+/* body additionally animates text color (base text color) */
+body {
+	transition-property: background-color, color, border-color;
+}
+
+/* Interactive elements */
 a,
 button {
 	transition-property: background-color, color, border-color;
@@ -195,7 +209,7 @@ select {
 	transition-timing-function: var(--transition-base-timing);
 }
 
-/* Utility classes for explicit transition control */
+/* Utility classes for div/span that need explicit theme transitions */
 .tt-surface {
 	transition-property: background-color, border-color;
 	transition-duration: var(--transition-base-duration);

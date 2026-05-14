@@ -154,7 +154,7 @@
 			background: var(--clr-surface);
 			border-left: 1px solid var(--clr-border);
 			transform: translateX(100%);
-			transition-property: transform; /* duration and timing inherited */
+			transition-property: transform, background-color, border-color; /* bg/border from .tt-surface, transform for slide */
 			pointer-events: none;
 			flex-wrap: nowrap;
 		}

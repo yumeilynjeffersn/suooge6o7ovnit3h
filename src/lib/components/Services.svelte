@@ -48,7 +48,7 @@
 		>
 			{#each services as svc, i}
 				<li
-					class="service-card reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface2)] p-8"
+					class="service-card reveal tt-surface relative overflow-hidden rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface2)] p-8"
 					style="--delay:{i * 80}ms"
 				>
 					<span class="mb-4 block text-[2.2rem] leading-none grayscale-[0.3]" aria-hidden="true"

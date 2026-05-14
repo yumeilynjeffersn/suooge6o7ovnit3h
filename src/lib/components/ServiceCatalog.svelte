@@ -183,7 +183,7 @@
 				>
 					<div class="mb-4 flex flex-col items-center text-center">
 						<div
-							class="service-image mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg bg-[var(--clr-surface2)]"
+							class="service-image tt-surface mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg bg-[var(--clr-surface2)]"
 						>
 							<img
 								src={service.image}

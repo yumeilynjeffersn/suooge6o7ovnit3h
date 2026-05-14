@@ -46,7 +46,7 @@
 		>
 			{#each team as member, i}
 				<li
-					class="team-card reveal flex flex-col items-center rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface)] p-8 px-6 text-center"
+					class="team-card reveal tt-surface flex flex-col items-center rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface)] p-8 px-6 text-center"
 					style="--delay:{i * 90}ms"
 				>
 					<div

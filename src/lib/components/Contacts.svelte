@@ -83,7 +83,7 @@
 		</div>
 
 		<div
-			class="contacts-form reveal rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface2)] p-[clamp(1.5rem,3vw,2.5rem)]"
+			class="contacts-form reveal tt-surface rounded-[var(--radius-lg)] border border-[var(--clr-border)] bg-[var(--clr-surface2)] p-[clamp(1.5rem,3vw,2.5rem)]"
 			style="--delay:100ms"
 		>
 			<h3>{m.contacts_form_heading()}</h3>
