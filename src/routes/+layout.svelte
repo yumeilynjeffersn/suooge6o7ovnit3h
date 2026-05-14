@@ -3,7 +3,6 @@
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import { theme } from '$lib/stores/theme.svelte';
-	import '../app.css';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 

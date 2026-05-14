@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="controls" role="group" aria-label={m.controls_theme_aria()}>
+<div class="controls tt-surface" role="group" aria-label={m.controls_theme_aria()}>
 	<!-- Theme toggle switch -->
 	<button
 		class="theme-toggle"
@@ -40,7 +40,7 @@
 		</span>
 	</button>
 
-	<div class="divider" aria-hidden="true"></div>
+	<div class="divider tt-surface" aria-hidden="true"></div>
 
 	<!-- Language switcher -->
 	<div class="segment" aria-label={m.controls_lang_aria()}>
@@ -88,8 +88,7 @@
 		background: var(--clr-border);
 		border-radius: 12px;
 		transition-property: background-color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		/* duration and timing from global button rule */
 	}
 
 	.theme-toggle:hover .toggle-track {
@@ -116,8 +115,7 @@
 		background: var(--clr-surface);
 		border-radius: 50%;
 		transition-property: transform, background-color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		/* duration and timing from global button rule */
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
 
@@ -130,13 +128,12 @@
 		font-size: 0.75rem;
 		line-height: 1;
 		color: var(--clr-muted);
+		transition-property: color;
+		/* duration and timing from global button rule - enables bidirectional transition */
 	}
 
 	.theme-toggle.dark .toggle-icon {
 		color: var(--clr-accent);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	.segment {
@@ -166,8 +163,7 @@
 		font-size: 0.75rem;
 		cursor: pointer;
 		transition-property: background-color, color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		/* duration and timing from global button rule */
 		line-height: 1;
 	}
 

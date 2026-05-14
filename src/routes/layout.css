@@ -173,47 +173,43 @@ body {
 }
 
 /* ── CENTRALIZED THEME TRANSITIONS ── */
-/* Structural elements: background, text color, borders */
-body,
-section,
-header,
-footer,
-main,
-div,
-article,
-aside,
-nav {
+/* Global tag-level rules for elements that always carry theme colors */
+body {
+	transition-property: background-color, color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+a,
+button {
 	transition-property: background-color, color, border-color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
 }
 
-/* Text elements: color only (no background/border to animate) */
-p,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-dt,
-dd,
-address,
-blockquote,
-label,
-caption,
-figcaption {
+input,
+textarea,
+select {
+	transition-property: background-color, color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+/* Utility classes for explicit transition control */
+.tt-surface {
+	transition-property: background-color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+.tt-text {
 	transition-property: color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
 }
 
-/* Interactive elements */
-a,
-button {
-	transition-property: background-color, color, border-color, opacity;
+.tt-interactive {
+	transition-property: background-color, color, border-color;
 	transition-duration: var(--transition-base-duration);
 	transition-timing-function: var(--transition-base-timing);
 }
@@ -267,7 +263,7 @@ address {
 	opacity: 0;
 	transform: translateY(28px);
 	transition-property: opacity, transform;
-	transition-duration: 650ms;
+	transition-duration: 650ms; /* intentional: scroll-reveal is slower than theme (270ms) */
 	transition-timing-function: ease;
 	transition-delay: var(--delay, 0ms);
 }
@@ -275,6 +271,13 @@ address {
 .reveal.visible {
 	opacity: 1;
 	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		transition-duration: 0ms;
+		transition-delay: 0ms;
+	}
 }
 
 /* ── SHARED LAYOUT ── */
