@@ -5,14 +5,14 @@
   interface TeamMember {
     name: string;
     role: string;
-    img: string;
+    initials: string;
+    color: string;
   }
 
   const team = $derived<TeamMember[]>([
-    { name: m.team1_name(), role: m.team1_role(), img: 'https://randomuser.me/api/portraits/men/32.jpg' },
-    { name: m.team2_name(), role: m.team2_role(), img: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { name: m.team3_name(), role: m.team3_role(), img: 'https://randomuser.me/api/portraits/men/67.jpg' },
-    { name: m.team4_name(), role: m.team4_role(), img: 'https://randomuser.me/api/portraits/women/25.jpg' },
+    { name: m.team1_name(), role: m.team1_role(), initials: 'ДО', color: '#4a90e2' },
+    { name: m.team2_name(), role: m.team2_role(), initials: 'ВЗ', color: '#f5a623' },
+    { name: m.team3_name(), role: m.team3_role(), initials: 'АК', color: '#bd10e0' },
   ]);
 
   onMount((): (() => void) | void => {
@@ -43,8 +43,8 @@
     <ul class="grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-[var(--gap)]" role="list">
       {#each team as member, i}
         <li class="team-card flex flex-col items-center text-center bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-8 px-6 reveal" style="--delay:{i * 90}ms">
-          <div class="w-[100px] h-[100px] rounded-full overflow-hidden border-[3px] border-[var(--clr-accent)] mb-5 flex-shrink-0">
-            <img src={member.img} alt={member.name} loading="lazy" width="200" height="200" class="w-full h-full object-cover" />
+          <div class="w-[100px] h-[100px] rounded-full overflow-hidden border-[3px] border-[var(--clr-accent)] mb-5 flex-shrink-0 flex items-center justify-center" style="background: {member.color}">
+            <span class="text-white font-[family-name:var(--font-display)] text-2xl font-bold" aria-label={member.name}>{member.initials}</span>
           </div>
           <div>
             <h3>{member.name}</h3>
