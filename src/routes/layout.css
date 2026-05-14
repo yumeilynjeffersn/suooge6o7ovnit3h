@@ -84,9 +84,43 @@ body {
   font-weight: 300;
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+/* ── CENTRALIZED THEME TRANSITIONS ── */
+/* Structural elements */
+body,
+section,
+header,
+footer,
+main,
+div,
+article,
+aside,
+nav {
   transition:
-    background var(--transition),
-    color var(--transition);
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+/* Interactive elements */
+a,
+button {
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    opacity var(--transition);
+}
+
+/* Form elements */
+input,
+textarea,
+select {
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
 }
 
 h2 {
