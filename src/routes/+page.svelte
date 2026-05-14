@@ -4,6 +4,7 @@
   import Header        from '$lib/components/Header.svelte';
   import Hero          from '$lib/components/Hero.svelte';
   import Services      from '$lib/components/Services.svelte';
+  import ServiceCatalog from '$lib/components/ServiceCatalog.svelte';
   import FeatureBlocks from '$lib/components/FeatureBlocks.svelte';
   import Carousel      from '$lib/components/Carousel.svelte';
   import News          from '$lib/components/News.svelte';
@@ -39,6 +40,7 @@
 <main>
   <Hero />
   <Services />
+  <ServiceCatalog />
   <FeatureBlocks />
   <Carousel />
   <News />
