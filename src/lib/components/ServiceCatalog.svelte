@@ -173,10 +173,10 @@
       {#each services as service}
         <a 
           href={service.link}
-          class="group relative flex flex-col bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-6 transition-all duration-[var(--transition)] hover:border-[var(--clr-accent)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(184,212,68,0.15)] no-underline"
+          class="service-card group relative flex flex-col bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-[var(--radius-lg)] p-6 no-underline"
         >
           <div class="flex flex-col items-center text-center mb-4">
-            <div class="w-24 h-24 mb-4 flex items-center justify-center rounded-lg bg-[var(--clr-surface2)] overflow-hidden transition-transform duration-[var(--transition)] group-hover:scale-110">
+            <div class="service-image w-24 h-24 mb-4 flex items-center justify-center rounded-lg bg-[var(--clr-surface2)] overflow-hidden">
               <img 
                 src={service.image} 
                 alt={service.title}
@@ -184,7 +184,7 @@
                 loading="lazy"
               />
             </div>
-            <h3 class="font-[family-name:var(--font-display)] text-base font-bold text-[var(--clr-text)] mb-2 transition-colors duration-[var(--transition)] group-hover:text-[var(--clr-accent)]">
+            <h3 class="service-title font-[family-name:var(--font-display)] text-base font-bold text-[var(--clr-text)] mb-2">
               {service.title}
             </h3>
             <span class="text-xs text-[var(--clr-muted)]">
@@ -196,7 +196,7 @@
             <ul class="mt-auto pt-4 border-t border-[var(--clr-border)] space-y-2">
               {#each service.subcategories as sub}
                 <li class="flex justify-between items-center text-xs">
-                  <span class="text-[var(--clr-muted)] transition-colors duration-[var(--transition)] group-hover:text-[var(--clr-text)]">
+                  <span class="subcat-title text-[var(--clr-muted)]">
                     {sub.title}
                   </span>
                   <span class="text-[var(--clr-accent)] font-medium ml-2">
@@ -231,6 +231,44 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Service card hover effects */
+  .service-card {
+    transition:
+      border-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .service-card:hover {
+    border-color: var(--clr-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(184, 212, 68, 0.15);
+  }
+
+  .service-image {
+    transition: transform var(--transition);
+  }
+
+  .service-card:hover .service-image {
+    transform: scale(1.1);
+  }
+
+  .service-title {
+    transition: color var(--transition);
+  }
+
+  .service-card:hover .service-title {
+    color: var(--clr-accent);
+  }
+
+  .subcat-title {
+    transition: color var(--transition);
+  }
+
+  .service-card:hover .subcat-title {
+    color: var(--clr-text);
   }
 
   /* Stagger animation for grid items */
