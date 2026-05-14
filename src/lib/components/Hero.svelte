@@ -120,7 +120,8 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     transition-property: all;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
     cursor: pointer;
   }
 

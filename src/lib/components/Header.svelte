@@ -77,7 +77,8 @@
   /* Header transitions */
   .header {
     transition-property: background-color, border-color, padding;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   /* Scrolled state */
@@ -113,7 +114,8 @@
       border-left: 1px solid var(--clr-border);
       transform: translateX(100%);
       transition-property: transform;
-      transition-duration: var(--transition-base);
+      transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
       pointer-events: none;
       flex-wrap: nowrap;
     }

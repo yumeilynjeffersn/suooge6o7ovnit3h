@@ -236,7 +236,8 @@
   /* Service card hover effects */
   .service-card {
     transition-property: border-color, transform, box-shadow;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .service-card:hover {
@@ -247,7 +248,8 @@
 
   .service-image {
     transition-property: transform;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .service-card:hover .service-image {
@@ -256,7 +258,8 @@
 
   .service-title {
     transition-property: color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .service-card:hover .service-title {
@@ -265,7 +268,8 @@
 
   .subcat-title {
     transition-property: color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .service-card:hover .subcat-title {

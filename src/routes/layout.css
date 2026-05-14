@@ -4,8 +4,8 @@
 
 /* Custom utility for consistent transition timing */
 @utility transition-base {
-  transition-duration: 350ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 270ms;
+  transition-timing-function: ease-in-out;
 }
 
 /* Override transition-base for reduced motion preference */
@@ -69,12 +69,15 @@
   --max-w: 1200px;
   
   /* Timing function and duration shared across all interactive elements */
-  --transition-base: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Theme switching optimized: 270ms ease-in-out for smooth color transitions */
+  --transition-base-duration: 270ms;
+  --transition-base-timing: ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --transition-base: 0ms linear;
+    --transition-base-duration: 0ms;
+    --transition-base-timing: linear;
   }
 }
 
@@ -120,14 +123,16 @@ article,
 aside,
 nav {
   transition-property: background-color, color, border-color;
-  transition-duration: var(--transition-base);
+  transition-duration: var(--transition-base-duration);
+  transition-timing-function: var(--transition-base-timing);
 }
 
 /* Interactive elements */
 a,
 button {
   transition-property: background-color, color, border-color, opacity;
-  transition-duration: var(--transition-base);
+  transition-duration: var(--transition-base-duration);
+  transition-timing-function: var(--transition-base-timing);
 }
 
 /* Form elements */
@@ -135,7 +140,8 @@ input,
 textarea,
 select {
   transition-property: background-color, color, border-color;
-  transition-duration: var(--transition-base);
+  transition-duration: var(--transition-base-duration);
+  transition-timing-function: var(--transition-base-timing);
 }
 
 h2 {
@@ -225,7 +231,8 @@ address {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   transition-property: all;
-  transition-duration: var(--transition-base);
+  transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   cursor: pointer;
   border: none;
 }

@@ -59,7 +59,8 @@
   /* Card hover effects */
   .service-card {
     transition-property: border-color, transform;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .service-card:hover {

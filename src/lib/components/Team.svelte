@@ -64,7 +64,8 @@
   /* Card hover effects */
   .team-card {
     transition-property: border-color, transform;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
   .team-card:hover {
     border-color: var(--clr-accent);

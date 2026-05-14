@@ -83,7 +83,8 @@
   /* Caption fade on hover */
   .gallery-caption {
     transition-property: opacity;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .gallery-item:hover .gallery-caption {

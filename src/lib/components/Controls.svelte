@@ -88,7 +88,8 @@
     background: var(--clr-border);
     border-radius: 12px;
     transition-property: background-color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .theme-toggle:hover .toggle-track {
@@ -115,7 +116,8 @@
     background: var(--clr-surface);
     border-radius: 50%;
     transition-property: transform, background-color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
@@ -129,7 +131,8 @@
     line-height: 1;
     color: var(--clr-muted);
     transition-property: color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .theme-toggle.dark .toggle-icon {
@@ -163,7 +166,8 @@
     font-size: 0.75rem;
     cursor: pointer;
     transition-property: background-color, color;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
     line-height: 1;
   }
 

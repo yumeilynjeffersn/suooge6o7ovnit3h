@@ -167,7 +167,8 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
     cursor: pointer;
     background: var(--clr-accent);
     color: #0e0f0c;

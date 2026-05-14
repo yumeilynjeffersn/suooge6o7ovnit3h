@@ -91,7 +91,8 @@
   /* Card hover effects */
   .news-card-inner {
     transition-property: border-color, transform;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
   }
 
   .news-card-inner:hover {
@@ -126,7 +127,8 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     transition-property: all;
-    transition-duration: var(--transition-base);
+    transition-duration: var(--transition-base-duration);
+    transition-timing-function: var(--transition-base-timing);
     background: transparent;
     color: var(--clr-text);
     border: 2px solid rgba(255, 255, 255, 0.25);
