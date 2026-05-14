@@ -1,125 +1,237 @@
-# Transition Audit Checklist - COMPLETED ✅
+# Centralized Transition System - Final Documentation
 
-## Summary
+## Overview
 
-- Total occurrences: 71
-- New token: `--transition-base: 350ms cubic-bezier(0.4, 0, 0.2, 1)`
-- All updates completed successfully
+This document describes the centralized CSS transition system implemented to ensure synchronous theme switching across the entire SvelteKit application.
 
-## Files Updated
+## Problem Solved
 
-### src/app.css
+Previously, duplicate and conflicting transition declarations in component-scoped CSS were causing:
+- Desynchronized theme transitions (some elements animating at different speeds)
+- One-directional animations (only working light→dark, not dark→light)
+- Specificity conflicts between global and component CSS
+- Inconsistent timing across the application
 
-- [x] Line 20: Deprecated marker added to old --transition variable
-- [x] Line 68: Updated to use transition-property/duration pattern
-- [x] Line 113: Updated to use var(--transition-base)
+## Architecture
 
-### src/routes/layout.css (MAIN FILE)
-
-- [x] Added --transition-base token (350ms cubic-bezier)
-- [x] Added @utility transition-base for Tailwind
-- [x] Added prefers-reduced-motion support
-- [x] Lines 100-103: Updated structural elements
-- [x] Lines 109-113: Updated interactive elements
-- [x] Lines 120-123: Updated form elements
-- [x] Line 180: Updated reveal animation (intentionally 650ms)
-- [x] Line 225: Updated button transition
-
-### src/lib/components/Contacts.svelte
-
-- [x] Lines 52, 66: Added transition-base class
-- [x] Line 170: Updated to use var(--transition-base)
-
-### src/lib/components/Controls.svelte
-
-- [x] All transition properties updated to use var(--transition-base)
-- [x] Lines 90, 116-118, 131, 164-166: All updated
-
-### src/lib/components/FeatureBlocks.svelte
-
-- [x] Lines 47, 56, 62, 71, 80, 87: KEPT custom durations (500-1000ms) - documented as intentional hero animations
-- [x] Added HTML comments documenting the intentional long durations
-
-### src/lib/components/Footer.svelte
-
-- [x] Lines 32, 41, 42, 50: All added transition-base class
-
-### src/lib/components/Gallery.svelte
-
-- [x] Line 74: Updated to transition-property/duration pattern (500ms kept for effect)
-- [x] Line 83: Updated to use var(--transition-base)
-
-### src/lib/components/Header.svelte
-
-- [x] Line 50: Added transition-base class
-- [x] Lines 69-71: Added transition-base to burger menu
-- [x] Lines 79-82: Updated to use var(--transition-base)
-- [x] Line 117: Updated mobile menu transition
-
-### src/lib/components/Hero.svelte
-
-- [x] Line 122: Updated to use var(--transition-base)
-
-### src/lib/components/News.svelte
-
-- [x] Lines 93-95: Updated card transition
-- [x] Line 108: Updated (500ms kept for image effect)
-- [x] Line 127: Updated to use var(--transition-base)
-
-### src/lib/components/Services.svelte
-
-- [x] Lines 61-63: Updated to use var(--transition-base)
-
-### src/lib/components/ServiceCatalog.svelte
-
-- [x] Lines 238-241: Updated service card transition
-- [x] Lines 251, 259, 267: All updated to use var(--transition-base)
-
-### src/lib/components/Team.svelte
-
-- [x] Lines 66-68: Updated to use var(--transition-base)
-
-## Intentional Exceptions (Documented)
-
-### FeatureBlocks.svelte
-
-- **Lines 47, 56, 62, 71, 80, 87**: Duration values 500-1000ms
-- **Reason**: These are large hero image blocks with dramatic hover effects. The slower timing creates a cinematic, high-impact experience appropriate for featured content.
-- **Status**: Kept with HTML comments for future maintainers
-
-### Gallery.svelte & News.svelte
-
-- **Image zoom transitions**: 500ms
-- **Reason**: Smoother visual effect for large images
-
-### layout.css - .reveal animation
-
-- **Duration**: 650ms
-- **Reason**: Page entrance animation, intentionally slower for impact
-
-## Acceptance Criteria Results
-
-1. ✅ `grep -rn "duration-[0-9]" src/` - Only FeatureBlocks with documented exceptions
-2. ✅ `grep -rn "ease-in-out|ease-out|ease-in" src/` - No results in Tailwind classes
-3. ✅ All CSS transitions use var(--transition-base) or proper transition-property/duration pattern
-4. ✅ prefers-reduced-motion support added at token level
-5. ✅ pnpm run check passes (only known svelte-flickity type warning)
-
-## Token Implementation
-
-**Final value**: `--transition-base: 350ms cubic-bezier(0.4, 0, 0.2, 1);`
-
-**Tailwind utility**:
+### Single Source of Truth: `src/routes/layout.css`
 
 ```css
-@utility transition-base {
-	transition-duration: 350ms;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+:root {
+	--transition-base-duration: 270ms;
+	--transition-base-timing: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-base-duration: 0ms;
+		--transition-base-timing: linear;
+	}
 }
 ```
 
-**Usage patterns**:
+All timing values originate from these CSS variables, ensuring consistency.
 
-- Tailwind: `transition-colors transition-base`
-- CSS: `transition-duration: var(--transition-base);`
-- With custom properties: `transition-property: transform, opacity;`
+### CSS Variable Registration with @property
+
+```css
+@property --clr-bg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #0e0f0c;
+}
+/* ...9 total color variables registered... */
+```
+
+Registered color variables enable browser-native color interpolation during theme transitions.
+
+### Global Transition Rules
+
+**Target elements** (from `layout.css`):
+```css
+body {
+	transition-property: background-color, color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+a, button {
+	transition-property: background-color, color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+input, textarea, select {
+	transition-property: background-color, color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+```
+
+### Utility Classes
+
+For elements not covered by global tag selectors:
+
+```css
+.tt-surface {
+	transition-property: background-color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+.tt-text {
+	transition-property: color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+
+.tt-interactive {
+	transition-property: background-color, color, border-color;
+	transition-duration: var(--transition-base-duration);
+	transition-timing-function: var(--transition-base-timing);
+}
+```
+
+## Component Guidelines
+
+### ✅ DO:
+
+1. **Declare only `transition-property`** in component CSS:
+   ```css
+   .my-element {
+       transition-property: border-color, transform;
+       /* duration and timing inherited from global rules */
+   }
+   ```
+
+2. **Use utility classes** for elements with theme colors:
+   ```svelte
+   <div class="tt-surface rounded-lg border">
+   ```
+
+3. **Document intentional exceptions** with comments:
+   ```css
+   .hero-image {
+       transition-duration: 500ms; /* intentional: slower for dramatic effect */
+   }
+   ```
+
+### ❌ DON'T:
+
+1. **Never declare duration/timing in components**:
+   ```css
+   /* BAD - creates specificity conflicts */
+   .my-element {
+       transition-duration: var(--transition-base-duration);
+       transition-timing-function: var(--transition-base-timing);
+   }
+   ```
+
+2. **Avoid conditional transitions on state selectors**:
+   ```css
+   /* BAD - only animates one direction */
+   .dark .icon {
+       transition-property: color;
+   }
+   
+   /* GOOD - animates both directions */
+   .icon {
+       transition-property: color;
+   }
+   ```
+
+## Intentional Exceptions
+
+Some transitions deliberately deviate from the 270ms standard:
+
+### 1. Scroll Reveal Animation (650ms)
+**File**: `layout.css`
+```css
+.reveal {
+	transition-duration: 650ms; /* intentional: dramatic entrance */
+}
+```
+**Reason**: Page entrance animations should be slower for impact.
+
+### 2. Image Zoom Effects (500ms)
+**Files**: `Gallery.svelte`, `News.svelte`
+```css
+.gallery-item img {
+	transition-duration: 500ms; /* intentional: slower zoom for better visual effect */
+}
+```
+**Reason**: Image transformations look smoother with longer duration.
+
+### 3. Hero Feature Blocks (500-1000ms)
+**File**: `FeatureBlocks.svelte`
+```css
+/* Various hero animations: 500ms, 650ms, 800ms, 1000ms */
+```
+**Reason**: Large hero blocks need cinematic timing for high-impact experience.
+
+## Files Modified
+
+### Phase 1: CSS Variable Registration
+- `src/routes/layout.css` - Added @property declarations
+- All components - Removed component-scoped color transitions
+
+### Phase 2: Centralized System
+- `src/routes/+layout.svelte` - Removed app.css import
+- `src/routes/layout.css` - Created utility classes, refined selectors, added prefers-reduced-motion
+- `src/lib/components/Controls.svelte` - Fixed bidirectional icon transition
+- `src/lib/components/Contacts.svelte` - Removed duplicate declarations
+- `src/lib/components/Footer.svelte` - Removed duplicate declarations
+- `src/lib/components/Gallery.svelte` - Removed duplicates, marked exception
+- `src/lib/components/Header.svelte` - Removed all duplicate declarations
+- `src/lib/components/Hero.svelte` - Removed duplicate declarations
+- `src/lib/components/News.svelte` - Removed duplicates, marked exception
+- `src/lib/components/Services.svelte` - Removed duplicate declarations
+- `src/lib/components/Team.svelte` - Removed duplicate declarations
+- `src/lib/components/ServiceCatalog.svelte` - Removed duplicate declarations
+
+## Browser Support
+
+- **@property**: Chrome 85+, Firefox 128+, Safari 16.4+
+- **Graceful degradation**: Older browsers get instant color changes (acceptable fallback)
+
+## Verification
+
+```bash
+# No duplicate duration/timing in components:
+grep -r "transition-duration: var(--transition-base-duration)" src/lib/components/
+# Should return: no results
+
+grep -r "transition-timing-function: var(--transition-base-timing)" src/lib/components/
+# Should return: no results
+
+# Build should pass:
+pnpm build
+```
+
+## Accessibility
+
+The system respects `prefers-reduced-motion`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-base-duration: 0ms;
+		--transition-base-timing: linear;
+	}
+	
+	.reveal {
+		transition-duration: 0ms;
+		transition-delay: 0ms;
+	}
+}
+```
+
+Users with motion sensitivity preferences get instant transitions.
+
+## Key Takeaways
+
+1. **Component-scoped CSS has higher specificity** than global rules - avoid declaring duration/timing in components
+2. **Transitions must be declared on base state**, not conditional states, for bidirectional animation
+3. **CSS variable registration is required** for color interpolation in modern browsers
+4. **Single source of truth** prevents timing inconsistencies and desynchronization
+5. **Utility classes > broad tag selectors** for precise control over which elements transition
