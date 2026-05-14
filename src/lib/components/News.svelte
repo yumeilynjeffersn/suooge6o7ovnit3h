@@ -99,9 +99,7 @@
 <style>
 	/* Card hover effects */
 	.news-card-inner {
-		transition-property: border-color, transform;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		transition-property: border-color, transform; /* duration and timing inherited */
 	}
 
 	.news-card-inner:hover {
@@ -115,15 +113,13 @@
 		height: 100%;
 		object-fit: cover;
 		transition-property: transform;
-		transition-duration: 500ms;
+		transition-duration: 500ms; /* intentional: slower zoom for better visual effect */
 		transition-timing-function: ease;
 	}
 
 	.news-card-inner:hover .news-img-wrap img {
 		transform: scale(1.06);
 	}
-
-	/* Remove all moved to Tailwind */
 
 	.btn-outline {
 		display: inline-flex;
@@ -136,8 +132,7 @@
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		transition-property: background-color, color, border-color, transform;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		/* duration and timing from global button rule */
 		background: transparent;
 		color: var(--clr-text);
 		border: 2px solid rgba(255, 255, 255, 0.25);

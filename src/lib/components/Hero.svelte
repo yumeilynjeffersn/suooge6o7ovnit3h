@@ -136,8 +136,7 @@
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		transition-property: background-color, color, border-color, transform;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		/* duration and timing from global button rule */
 		cursor: pointer;
 	}
 

@@ -98,34 +98,28 @@
 <style>
 	/* Header transitions */
 	.header {
-		transition-property: background-color, border-color, padding;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		transition-property: background-color, border-color, padding; /* duration and timing inherited */
 	}
 
 	/* Navigation links */
 	.nav-link {
 		color: var(--clr-nav-link);
+		transition-property: color; /* duration and timing inherited */
 	}
 
 	.nav-link:hover {
 		color: var(--clr-accent);
-		transition-property: color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	/* CTA button */
 	.nav-cta {
 		background: var(--clr-accent);
 		color: var(--clr-accent-fg);
+		transition-property: background-color; /* duration and timing from global button rule */
 	}
 
 	.nav-cta:hover {
 		background: var(--clr-accent-hover);
-		transition-property: background-color;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
 	}
 
 	/* Scrolled state */
@@ -160,9 +154,7 @@
 			background: var(--clr-surface);
 			border-left: 1px solid var(--clr-border);
 			transform: translateX(100%);
-			transition-property: transform;
-			transition-duration: var(--transition-base-duration);
-			transition-timing-function: var(--transition-base-timing);
+			transition-property: transform; /* duration and timing inherited */
 			pointer-events: none;
 			flex-wrap: nowrap;
 		}

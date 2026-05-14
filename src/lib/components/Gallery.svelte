@@ -109,7 +109,7 @@
 	/* Image zoom on hover */
 	.gallery-item img {
 		transition-property: transform;
-		transition-duration: 500ms;
+		transition-duration: 500ms; /* intentional: slower zoom for better visual effect */
 		transition-timing-function: ease;
 	}
 
@@ -119,9 +119,7 @@
 
 	/* Caption fade on hover */
 	.gallery-caption {
-		transition-property: opacity;
-		transition-duration: var(--transition-base-duration);
-		transition-timing-function: var(--transition-base-timing);
+		transition-property: opacity; /* duration and timing inherited */
 	}
 
 	.gallery-item:hover .gallery-caption {
