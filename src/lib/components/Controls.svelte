@@ -9,14 +9,8 @@
   const langOptions: Locale[] = ['ru', 'en'];
   let currentLocale = $state<Locale>(getLocale() as Locale);
 
-  // Convert 'system' to concrete theme on mount
-  onMount(() => {
-    if (theme.mode === 'system') {
-      theme.setMode(theme.isDark ? 'dark' : 'light');
-    }
-  });
-
   // Toggle between light and dark
+  // On first toggle, converts from 'system' to explicit light/dark
   function toggleTheme() {
     const nextTheme = theme.isDark ? 'light' : 'dark';
     theme.setMode(nextTheme);
@@ -36,7 +30,7 @@
     onclick={toggleTheme}
     title={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
     aria-label={theme.isDark ? m.controls_theme_light() : m.controls_theme_dark()}
-    aria-pressed={theme.isDark}
+    aria-checked={theme.isDark}
     role="switch"
   >
     <span class="toggle-track">
@@ -55,7 +49,7 @@
         class="seg-btn lang-btn"
         class:active={currentLocale === lang}
         onclick={() => handleLocaleChange(lang)}
-        aria-pressed={currentLocale === lang}
+        aria-current={currentLocale === lang ? 'true' : 'false'}
       >
         {lang.toUpperCase()}
       </button>
