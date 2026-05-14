@@ -2,6 +2,20 @@
 @plugin '@tailwindcss/forms' { strategy: class };
 @plugin '@tailwindcss/typography';
 
+/* Custom utility for consistent transition timing */
+@utility transition-base {
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Override transition-base for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .transition-base {
+    transition-duration: 0ms !important;
+    transition-timing-function: linear !important;
+  }
+}
+
 /* ── DESIGN TOKENS — DARK (default) ── */
 :root,
 [data-theme='dark'] {
@@ -53,7 +67,15 @@
   --gap: clamp(1rem, 3vw, 2rem);
   --section-py: clamp(4rem, 8vw, 7rem);
   --max-w: 1200px;
-  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Timing function and duration shared across all interactive elements */
+  --transition-base: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-base: 0ms linear;
+  }
 }
 
 html {
@@ -97,30 +119,23 @@ div,
 article,
 aside,
 nav {
-  transition:
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition);
+  transition-property: background-color, color, border-color;
+  transition-duration: var(--transition-base);
 }
 
 /* Interactive elements */
 a,
 button {
-  transition:
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    opacity var(--transition);
+  transition-property: background-color, color, border-color, opacity;
+  transition-duration: var(--transition-base);
 }
 
 /* Form elements */
 input,
 textarea,
 select {
-  transition:
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition);
+  transition-property: background-color, color, border-color;
+  transition-duration: var(--transition-base);
 }
 
 h2 {
@@ -163,9 +178,10 @@ address {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition:
-    opacity 0.65s ease var(--delay, 0ms),
-    transform 0.65s ease var(--delay, 0ms);
+  transition-property: opacity, transform;
+  transition-duration: 650ms;
+  transition-timing-function: ease;
+  transition-delay: var(--delay, 0ms);
 }
 
 .reveal.visible {
@@ -208,7 +224,8 @@ address {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: var(--transition);
+  transition-property: all;
+  transition-duration: var(--transition-base);
   cursor: pointer;
   border: none;
 }

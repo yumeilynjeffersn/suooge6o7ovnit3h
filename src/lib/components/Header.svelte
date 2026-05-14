@@ -47,7 +47,7 @@
       <ul class="nav-list flex items-center gap-[clamp(0.5rem,2vw,1.75rem)] flex-wrap" class:open={menuOpen}>
         {#each navLinks as link}
           <li>
-            <a href="#{link.anchor}" onclick={closeMenu} class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.12em] uppercase text-[rgba(232,229,220,0.75)] transition-colors hover:text-[var(--clr-accent)]">
+            <a href="#{link.anchor}" onclick={closeMenu} class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.12em] uppercase text-[rgba(232,229,220,0.75)] transition-colors transition-base hover:text-[var(--clr-accent)]">
               {link.text}
             </a>
           </li>
@@ -66,9 +66,9 @@
       aria-expanded={menuOpen}
       onclick={toggleMenu}
     >
-      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
-      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
-      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all"></span>
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all transition-base"></span>
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all transition-base"></span>
+      <span class="block w-6 h-0.5 bg-[var(--clr-text)] rounded-sm transition-all transition-base"></span>
     </button>
   </div>
 </header>
@@ -76,10 +76,8 @@
 <style>
   /* Header transitions */
   .header {
-    transition:
-      background var(--transition),
-      border-color var(--transition),
-      padding var(--transition);
+    transition-property: background-color, border-color, padding;
+    transition-duration: var(--transition-base);
   }
 
   /* Scrolled state */
@@ -114,7 +112,8 @@
       background: var(--clr-surface);
       border-left: 1px solid var(--clr-border);
       transform: translateX(100%);
-      transition: transform var(--transition);
+      transition-property: transform;
+      transition-duration: var(--transition-base);
       pointer-events: none;
       flex-wrap: nowrap;
     }

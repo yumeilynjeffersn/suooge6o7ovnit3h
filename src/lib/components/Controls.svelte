@@ -87,7 +87,8 @@
     height: 24px;
     background: var(--clr-border);
     border-radius: 12px;
-    transition: background var(--transition);
+    transition-property: background-color;
+    transition-duration: var(--transition-base);
   }
 
   .theme-toggle:hover .toggle-track {
@@ -113,9 +114,8 @@
     height: 20px;
     background: var(--clr-surface);
     border-radius: 50%;
-    transition:
-      transform var(--transition),
-      background var(--transition);
+    transition-property: transform, background-color;
+    transition-duration: var(--transition-base);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
@@ -128,7 +128,8 @@
     font-size: 0.75rem;
     line-height: 1;
     color: var(--clr-muted);
-    transition: color var(--transition);
+    transition-property: color;
+    transition-duration: var(--transition-base);
   }
 
   .theme-toggle.dark .toggle-icon {
@@ -161,9 +162,8 @@
     color: var(--clr-muted);
     font-size: 0.75rem;
     cursor: pointer;
-    transition:
-      background var(--transition),
-      color var(--transition);
+    transition-property: background-color, color;
+    transition-duration: var(--transition-base);
     line-height: 1;
   }
 

@@ -17,6 +17,7 @@
   --gap: clamp(1rem, 3vw, 2rem);
   --section-py: clamp(4rem, 8vw, 7rem);
   --max-w: 1200px;
+  /* Deprecated: use --transition-base from layout.css instead */
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -65,9 +66,11 @@ address {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition:
-    opacity 0.65s ease var(--delay, 0ms),
-    transform 0.65s ease var(--delay, 0ms);
+  /* Intentionally 650ms for slower reveal effect */
+  transition-property: opacity, transform;
+  transition-duration: 650ms;
+  transition-timing-function: ease;
+  transition-delay: var(--delay, 0ms);
 }
 
 .reveal.visible {
@@ -110,7 +113,8 @@ address {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: var(--transition);
+  transition-property: all;
+  transition-duration: var(--transition-base);
   cursor: pointer;
   border: none;
 }

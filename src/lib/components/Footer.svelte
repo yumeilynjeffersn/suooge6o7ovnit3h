@@ -29,7 +29,7 @@
       <h4 class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[var(--clr-muted)] mb-4">{m.footer_nav_heading()}</h4>
       <ul class="flex flex-col gap-2" role="list">
         {#each navLinks as link}
-          <li><a href="#{link.anchor}" class="text-[rgba(232,229,220,0.65)] text-[0.9rem] transition-colors hover:text-[var(--clr-accent)]">{link.text}</a></li>
+          <li><a href="#{link.anchor}" class="text-[rgba(232,229,220,0.65)] text-[0.9rem] transition-colors transition-base hover:text-[var(--clr-accent)]">{link.text}</a></li>
         {/each}
       </ul>
     </nav>
@@ -38,8 +38,8 @@
       <h4 class="font-[family-name:var(--font-display)] text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[var(--clr-muted)] mb-4">{m.footer_contacts_heading()}</h4>
       <address>
         <p class="text-[rgba(232,229,220,0.65)] text-[0.9rem] mb-1.5">{m.footer_address()}</p>
-        <p class="text-[rgba(232,229,220,0.65)] text-[0.9rem] mb-1.5"><a href="tel:{m.phone_number()}" class="transition-colors hover:text-[var(--clr-accent)]">{m.phone_number()}</a></p>
-        <p class="text-[rgba(232,229,220,0.65)] text-[0.9rem] mb-1.5"><a href="mailto:{m.email_address()}" class="transition-colors hover:text-[var(--clr-accent)]">{m.email_address()}</a></p>
+        <p class="text-[rgba(232,229,220,0.65)] text-[0.9rem] mb-1.5"><a href="tel:{m.phone_number()}" class="transition-colors transition-base hover:text-[var(--clr-accent)]">{m.phone_number()}</a></p>
+        <p class="text-[rgba(232,229,220,0.65)] text-[0.9rem] mb-1.5"><a href="mailto:{m.email_address()}" class="transition-colors transition-base hover:text-[var(--clr-accent)]">{m.email_address()}</a></p>
       </address>
     </div>
   </div>
@@ -47,7 +47,7 @@
   <div class="border-t border-[var(--clr-border)] py-5">
     <div class="container flex justify-between items-center flex-wrap gap-2">
       <p class="text-[0.78rem] text-[var(--clr-muted)]">{m.footer_copyright()}</p>
-      <p class="text-[0.78rem] text-[var(--clr-muted)]"><a href="/privacy" class="transition-colors hover:text-[var(--clr-accent)]">{m.footer_privacy()}</a></p>
+      <p class="text-[0.78rem] text-[var(--clr-muted)]"><a href="/privacy" class="transition-colors transition-base hover:text-[var(--clr-accent)]">{m.footer_privacy()}</a></p>
     </div>
   </div>
 </footer>

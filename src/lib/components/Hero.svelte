@@ -119,7 +119,8 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition-property: all;
+    transition-duration: var(--transition-base);
     cursor: pointer;
   }
 

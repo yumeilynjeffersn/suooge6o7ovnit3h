@@ -90,9 +90,8 @@
 <style>
   /* Card hover effects */
   .news-card-inner {
-    transition:
-      border-color var(--transition),
-      transform var(--transition);
+    transition-property: border-color, transform;
+    transition-duration: var(--transition-base);
   }
 
   .news-card-inner:hover {
@@ -105,7 +104,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition-property: transform;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
   }
 
   .news-card-inner:hover .news-img-wrap img {
@@ -124,7 +125,8 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition-property: all;
+    transition-duration: var(--transition-base);
     background: transparent;
     color: var(--clr-text);
     border: 2px solid rgba(255, 255, 255, 0.25);

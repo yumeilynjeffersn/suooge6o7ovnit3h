@@ -63,9 +63,8 @@
 <style>
   /* Card hover effects */
   .team-card {
-    transition:
-      border-color var(--transition),
-      transform var(--transition);
+    transition-property: border-color, transform;
+    transition-duration: var(--transition-base);
   }
   .team-card:hover {
     border-color: var(--clr-accent);

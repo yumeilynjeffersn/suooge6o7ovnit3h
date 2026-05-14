@@ -44,6 +44,7 @@
   <!-- Сетка без швов (gap-0) -->
   <div class="grid flex-grow grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-4">
     {#each blocks as block, i}
+      <!-- Intentionally longer duration (700ms) for dramatic hero block effect -->
       <div class="group relative flex flex-col justify-end overflow-hidden transition-all duration-700">
         
         <!-- Видео фон конкретного блока -->
@@ -55,6 +56,7 @@
             playsinline 
             class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
           >
+          <!-- Intentionally slow (1000ms) for smooth parallax-like effect -->
             <source src={block.video} type="video/mp4" />
           </video>
           

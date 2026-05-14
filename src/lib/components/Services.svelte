@@ -58,9 +58,8 @@
 <style>
   /* Card hover effects */
   .service-card {
-    transition:
-      border-color var(--transition),
-      transform var(--transition);
+    transition-property: border-color, transform;
+    transition-duration: var(--transition-base);
   }
 
   .service-card:hover {

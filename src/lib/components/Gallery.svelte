@@ -71,7 +71,9 @@
 
   /* Image zoom on hover */
   .gallery-item img {
-    transition: transform 0.5s ease;
+    transition-property: transform;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
   }
 
   .gallery-item:hover img {
@@ -80,7 +82,8 @@
 
   /* Caption fade on hover */
   .gallery-caption {
-    transition: opacity var(--transition);
+    transition-property: opacity;
+    transition-duration: var(--transition-base);
   }
 
   .gallery-item:hover .gallery-caption {

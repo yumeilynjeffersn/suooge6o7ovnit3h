@@ -49,7 +49,7 @@
               >
               <a
                 href="tel:{m.phone_number()}"
-                class="text-[var(--clr-text)] transition-colors hover:text-[var(--clr-accent)]"
+                class="text-[var(--clr-text)] transition-colors transition-base hover:text-[var(--clr-accent)]"
                 >{m.phone_number()}</a
               >
             </div>
@@ -63,7 +63,7 @@
               >
               <a
                 href="mailto:{m.email_address()}"
-                class="text-[var(--clr-text)] transition-colors hover:text-[var(--clr-accent)]"
+                class="text-[var(--clr-text)] transition-colors transition-base hover:text-[var(--clr-accent)]"
                 >{m.email_address()}</a
               >
             </div>
@@ -167,7 +167,7 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition-duration: var(--transition-base);
     cursor: pointer;
     background: var(--clr-accent);
     color: #0e0f0c;
